@@ -3,7 +3,7 @@
     <div class="page-header">
         <h1 class="page-title">Featured Projects & Academic Work</h1>
         <p class="page-description">
-            Selected systems engineering and academic degree projects, including major projects developed during Master of Computer Applications (MCA) with thesis and dissertation documentation.
+            Selected systems engineering and academic degree projects, including major projects developed during Master of Computer Applications (MCA) with comprehensive project reports and system documentation.
         </p>
     </div>
 
@@ -12,8 +12,8 @@
         <article class="project-card">
             <div class="project-card-header">
                 <span class="project-badge">{{ project.academic_tag }}</span>
-                {% if project.has_thesis %}
-                <span class="thesis-badge">Thesis / Report Available</span>
+                {% if project.has_report or project.has_thesis %}
+                <span class="report-badge">Project Report Available</span>
                 {% endif %}
             </div>
 
@@ -41,12 +41,15 @@
                     Project Overview ⊞
                 </button>
 
-                {% if project.has_thesis %}
-                <button hx-get="/projects/{{ project.slug }}/thesis" 
+                {% if project.has_report or project.has_thesis %}
+                <button hx-get="/projects/{{ project.slug }}/report" 
                         hx-target="#modal-container" 
                         class="btn btn-primary btn-sm">
-                    Thesis / Dissertation Report 📄
+                    Project Report ({{ project.report_pages }} Pages) 📄
                 </button>
+                <a href="{{ project.report_pdf }}" download class="btn btn-outline btn-sm" title="Direct Download PDF">
+                    PDF ⬇
+                </a>
                 {% endif %}
 
                 {% if project.github %}

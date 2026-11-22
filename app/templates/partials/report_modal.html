@@ -1,0 +1,105 @@
+<div class="modal-backdrop" onclick="handleBackdropClick(event)">
+    <div class="modal-window modal-window-large">
+        <div class="modal-header">
+            <div>
+                <span class="report-badge">Master of Computer Applications (MCA)</span>
+                <span class="project-badge">{{ project.academic_tag }}</span>
+                <h2 class="modal-title mt-2">{{ project.report_title or project.thesis_title or project.name }}</h2>
+            </div>
+            <button onclick="closeModal()" class="modal-close" title="Close [Esc]">✕</button>
+        </div>
+
+        <div class="modal-body space-y-6">
+            <!-- Academic Metadata Box -->
+            <div class="thesis-meta-box">
+                <div class="thesis-meta-row">
+                    <span class="meta-label">Author / Candidate:</span>
+                    <span class="meta-value">{{ profile.name }}</span>
+                </div>
+                <div class="thesis-meta-row">
+                    <span class="meta-label">Academic Program:</span>
+                    <span class="meta-value">Master of Computer Applications (MCA, 2022–2024)</span>
+                </div>
+                <div class="thesis-meta-row">
+                    <span class="meta-label">Department / Affiliation:</span>
+                    <span class="meta-value">Ganga Institute of Technology and Management / Maharshi Dayanand University</span>
+                </div>
+                <div class="thesis-meta-row">
+                    <span class="meta-label">Project Scope:</span>
+                    <span class="meta-value">{{ project.academic_tag }} (Major Project Report)</span>
+                </div>
+                {% if project.report_pages %}
+                <div class="thesis-meta-row">
+                    <span class="meta-label">Project Report Document:</span>
+                    <span class="meta-value font-semibold">{{ project.report_pages }} Pages (Complete Project Report PDF)</span>
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- Abstract -->
+            <div>
+                <h3 class="modal-section-title">Project Abstract & Scope</h3>
+                <p class="modal-text leading-relaxed">
+                    {% if project.slug == 'decentralized-election' %}
+                    This major project report explores the formulation and practical implementation of an immutable electoral protocol leveraging the Ethereum blockchain virtual machine (EVM). Traditional centralized electronic and manual ballot counting schemes suffer from single points of failure, vulnerable backends, and opaque auditing pipelines. By framing the electoral registry and ballot tallying process as a deterministic state machine governed by Solidity smart contracts, the system guarantees that only authorized public keys can cast a single ballot, while making every stage of the election tally cryptographically auditable in real time. The report analyzes contract gas optimization, Sybil resistance, and the security boundaries of decentralized governance applications.
+                    {% elif project.slug == 'multithreaded-scheduler' %}
+                    This major project report investigates concurrency bottlenecks, worker thread starvation, and priority-preemptive task scheduling in compute-intensive and I/O-bound application runtimes. As concurrent workloads grow, unmanaged thread spawning causes severe context-switching overhead and CPU cache thrashing. The project implements a robust priority queue mechanism with dynamic worker pooling in Java, complemented by an asynchronous FastAPI and Redis task dispatching architecture. A WebSocket monitoring pipeline provides real-time visualization of queue depth, worker saturation, and latency metrics under varying load conditions, demonstrating a 35% improvement in task throughput compared to naive sequential queues.
+                    {% else %}
+                    {{ project.problem }}
+                    {% endif %}
+                </p>
+            </div>
+
+            <!-- Embedded PDF Document Viewer -->
+            {% if project.report_pdf %}
+            <div class="embedded-pdf-section">
+                <div class="pdf-header-bar">
+                    <div>
+                        <h3 class="modal-section-title mb-0">Embedded Project Report Document</h3>
+                        <span class="text-xs text-muted">{{ project.report_pages }} Pages · Official Submitted Report</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <a href="{{ project.report_pdf }}" target="_blank" rel="noopener" class="btn btn-primary btn-sm">
+                            Open in Full Tab ↗
+                        </a>
+                        <a href="{{ project.report_pdf }}" download class="btn btn-secondary btn-sm">
+                            Download PDF 📄
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="pdf-frame-wrapper">
+                    <iframe src="{{ project.report_pdf }}#toolbar=1" class="pdf-iframe" title="{{ project.name }} Report"></iframe>
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- Methodology & Architecture -->
+            <div>
+                <h3 class="modal-section-title">Methodology & Design Invariants</h3>
+                <p class="modal-text leading-relaxed">
+                    {{ project.architecture }}
+                </p>
+                <ul class="modal-bullets mt-3">
+                    {% for h in project.highlights %}
+                    <li>{{ h }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button hx-get="/projects/{{ project.slug }}" hx-target="#modal-container" class="btn btn-secondary btn-sm">
+                ← Back to Project Details
+            </button>
+            <div class="flex items-center gap-2">
+                {% if project.report_pdf %}
+                <a href="{{ project.report_pdf }}" download class="btn btn-primary btn-sm">
+                    Download Full Project Report (PDF) 📄
+                </a>
+                {% endif %}
+                <button onclick="closeModal()" class="btn btn-secondary btn-sm">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

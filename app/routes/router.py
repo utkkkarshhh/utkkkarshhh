@@ -88,15 +88,16 @@ async def get_project_modal(request: Request, slug: str):
     )
 
 
+@router.get("/projects/{slug}/report", response_class=HTMLResponse)
 @router.get("/projects/{slug}/thesis", response_class=HTMLResponse)
-async def get_thesis_modal(request: Request, slug: str):
-    project = next((p for p in PROJECTS if p["slug"] == slug and p.get("has_thesis")), None)
+async def get_report_modal(request: Request, slug: str):
+    project = next((p for p in PROJECTS if p["slug"] == slug and (p.get("has_report") or p.get("has_thesis"))), None)
     if not project:
-        raise HTTPException(status_code=404, detail="Thesis/Dissertation details not available for this project.")
+        raise HTTPException(status_code=404, detail="Project report not available for this project.")
     
     return templates.TemplateResponse(
         request=request,
-        name="partials/thesis_modal.html",
+        name="partials/report_modal.html",
         context={"project": project, "profile": PROFILE}
     )
 

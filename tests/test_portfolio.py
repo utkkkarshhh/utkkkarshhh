@@ -29,6 +29,11 @@ class TestPortfolioApplication:
         assert res.status_code == 200
         assert "NielsenIQ" in res.text
         assert "Global Innovation Team" in res.text
+        assert "FastAPI" in res.text
+        assert "HTMX" in res.text
+        assert "Dagster" in res.text
+        assert "Prometheus" in res.text
+        assert "Grafana" in res.text
         assert "AgBe Technologies" in res.text
         assert "TVS Motor Company" in res.text
         assert "Timeli LLC" in res.text
@@ -52,22 +57,29 @@ class TestPortfolioApplication:
         res_404 = client.get("/projects/non-existent-project")
         assert res_404.status_code == 404
 
-    def test_thesis_modal(self, client):
-        # MCA 1st Year Major Project
-        res_dapp = client.get("/projects/decentralized-election/thesis")
+    def test_report_modal(self, client):
+        # MCA 1st Year Major Project Report
+        res_dapp = client.get("/projects/decentralized-election/report")
         assert res_dapp.status_code == 200
-        assert "Thesis / Dissertation Defense" in res_dapp.text
+        assert "Project Report" in res_dapp.text
         assert "Master of Computer Applications" in res_dapp.text
+        assert "mca-1st-year-project-report.pdf" in res_dapp.text
 
-        # MCA 2nd Year Major Project
-        res_sched = client.get("/projects/multithreaded-scheduler/thesis")
+        # MCA 2nd Year Major Project Report
+        res_sched = client.get("/projects/multithreaded-scheduler/report")
         assert res_sched.status_code == 200
-        assert "Thesis / Dissertation Defense" in res_sched.text
+        assert "Project Report" in res_sched.text
         assert "Task Scheduling" in res_sched.text
+        assert "mca-2nd-year-project-report.pdf" in res_sched.text
 
-        # 404 for project without thesis
-        res_no_thesis = client.get("/projects/docuvault/thesis")
-        assert res_no_thesis.status_code == 404
+        # Compatibility alias route /thesis
+        res_alias = client.get("/projects/decentralized-election/thesis")
+        assert res_alias.status_code == 200
+        assert "Project Report" in res_alias.text
+
+        # 404 for project without report
+        res_no_report = client.get("/projects/docuvault/report")
+        assert res_no_report.status_code == 404
 
     def test_education_page(self, client):
         res = client.get("/education")
@@ -115,3 +127,15 @@ class TestPortfolioApplication:
 
         res_fav = client.get("/favicon.ico")
         assert res_fav.status_code == 200
+
+        res_pdf1 = client.get("/static/docs/mca-1st-year-project-report.pdf")
+        assert res_pdf1.status_code == 200
+        assert len(res_pdf1.content) > 100000
+
+        res_pdf2 = client.get("/static/docs/mca-2nd-year-project-report.pdf")
+        assert res_pdf2.status_code == 200
+        assert len(res_pdf2.content) > 100000
+
+        res_diag = client.get("/static/img/projects/url-shortener-er-diagram.png")
+        assert res_diag.status_code == 200
+        assert len(res_diag.content) > 1000

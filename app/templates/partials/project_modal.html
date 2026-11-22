@@ -19,6 +19,21 @@
                 <p class="modal-text">{{ project.architecture }}</p>
             </div>
 
+            {% if project.er_diagram %}
+            <div>
+                <h3 class="modal-section-title">Database & System Architecture Diagram</h3>
+                <div class="er-diagram-wrapper">
+                    <a href="{{ project.er_diagram }}" target="_blank" title="Click to view full image in new tab">
+                        <img src="{{ project.er_diagram }}" alt="{{ project.name }} Architecture" class="er-diagram-img">
+                    </a>
+                    <div class="text-xs text-muted mt-1.5 flex justify-between">
+                        <span>DynamoDB url_mapping table schema & lookup indexes</span>
+                        <a href="{{ project.er_diagram }}" target="_blank" class="text-accent underline">Open Full Image ↗</a>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
             <div>
                 <h3 class="modal-section-title">Key Engineering Highlights</h3>
                 <ul class="modal-bullets">
@@ -40,10 +55,10 @@
 
         <div class="modal-footer">
             <div class="modal-footer-left">
-                {% if project.has_thesis %}
-                <button hx-get="/projects/{{ project.slug }}/thesis" hx-target="#modal-container"
+                {% if project.has_report or project.has_thesis %}
+                <button hx-get="/projects/{{ project.slug }}/report" hx-target="#modal-container"
                     class="btn btn-primary btn-sm">
-                    View Thesis / Project Report 📄
+                    View Project Report ({{ project.report_pages }} Pages) 📄
                 </button>
                 {% endif %}
             </div>
