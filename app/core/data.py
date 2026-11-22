@@ -23,19 +23,13 @@ PROFILE: Dict[str, Any] = {
     "resume_url": "https://drive.google.com/file/d/1_yizJ-QjzE6gpMkDUGLJBd_L6o3EyAtu/view?usp=sharing",
     "avatar_url": "/static/img/utkarsh-img.png",
     "about_text": (
-        "I am a Backend Software Engineer currently working with the Global Innovation Team at NielsenIQ (NIQ). "
-        "Previously, I spent two years building scalable, event-driven backend systems at AgBe Technologies for "
-        "enterprise platforms like TVS Motor Company, and interned at US-based startup Timeli LLC.\n\n"
-        "I hold a Master of Computer Applications (MCA) from Ganga Institute of Technology and Management (2022–2024) "
-        "and a Bachelor of Computer Applications (BCA) from Maharshi Dayanand University (2019–2022). "
-        "Alongside my engineering career, I am an aspirant preparing applications for Master's and Ph.D. programs in "
-        "Computer Science, with keen academic interests in Distributed Systems, Concurrency, and Resilient Backend Infrastructure."
+        "Backend Software Engineer at NielsenIQ (NIQ), previously building high-throughput, event-driven pipelines "
+        "at AgBe Technologies (Client: TVS Motor Company) and Timeli LLC. Holding an MCA (2024) and BCA (2022), "
+        "I am actively preparing applications for Master's and Ph.D. programs in Computer Science."
     ),
     "aspirations_statement": (
-        "Having designed and maintained high-throughput production data pipelines processing millions of transactions in industry, "
-        "I have developed a strong appreciation for the fundamental mechanics of distributed coordination, asynchronous runtimes, "
-        "and systems reliability. I aspire to pursue graduate studies (MS / Ph.D.) to deepen my theoretical foundations and contribute "
-        "to research in distributed systems, consensus mechanisms, and high-performance computing."
+        "Aiming to pursue graduate studies (MS / Ph.D.) to contribute to research in distributed systems, "
+        "consensus protocols, and high-performance asynchronous runtimes."
     )
 }
 

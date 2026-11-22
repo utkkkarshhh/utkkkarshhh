@@ -22,32 +22,15 @@
 
                 <div class="intro-bio">
                     <p>
-                        I am a Software Engineer currently with the <strong>Global Innovation Team at NielsenIQ
-                            (NIQ)</strong>.
-                        Previously, I worked at <strong>AgBe Technologies</strong>, where I engineered high-throughput
-                        coupon generation and event-driven ingestion pipelines processing millions of records on Azure
-                        for <strong>TVS Motor Company</strong>, and interned at <strong>Timeli LLC</strong>.
-                    </p>
-                    <p>
-                        I completed my <strong>Master of Computer Applications (MCA)</strong> at <strong></strong>Ganga
-                        Institute of
-                        Technology and Management</strong> (2022–2024)
-                        and my <strong>Bachelor of Computer Applications (BCA)</strong> at <strong>Maharshi Dayanand
-                            University</strong>
-                        (2019–2022).
+                        Backend Software Engineer at <strong>NielsenIQ (NIQ)</strong>, previously building high-throughput, event-driven pipelines at <strong>AgBe Technologies</strong> (Client: TVS Motor Company) and <strong>Timeli LLC</strong>. Holding an <strong>MCA</strong> (2024) and <strong>BCA</strong> (2022), I am preparing applications for <strong>Master's and Ph.D. programs in Computer Science</strong>.
                     </p>
                 </div>
 
                 <!-- Academic Aspirations Card -->
                 <div class="academic-callout">
-                    <div class="callout-label">Graduate Studies & Research Aspirations</div>
+                    <div class="callout-label">Graduate Studies Focus</div>
                     <p>
-                        Having architected production data workflows and backend services at scale, I am actively
-                        preparing applications
-                        for <strong>Master's and Ph.D. programs in Computer Science</strong>. My primary areas of
-                        interest include
-                        <strong>Distributed Systems</strong>, <strong>Concurrency & Task Scheduling</strong>, and
-                        <strong>Resilient Backend Architecture</strong>.
+                        Focusing on <strong>Distributed Systems</strong>, <strong>Concurrency & Task Scheduling</strong>, and <strong>Resilient Backend Architecture</strong>.
                     </p>
                 </div>
 
@@ -75,28 +58,27 @@
 
         <div class="snapshot-grid">
             <div class="snapshot-card">
-                <div class="snapshot-header">Current Appointment</div>
+                <div class="snapshot-header">// CURRENT APPOINTMENT</div>
                 <div class="snapshot-title">NielsenIQ (NIQ)</div>
-                <div class="snapshot-desc">Solution Specialist Engineer, Global Innovation Team (June 2026 – Present).
-                </div>
+                <div class="snapshot-desc">Solution Specialist Engineer, Global Innovation Team (June 2026 – Present).</div>
             </div>
 
             <div class="snapshot-card">
-                <div class="snapshot-header">Previous Industry Experience</div>
+                <div class="snapshot-header">// PREVIOUS INDUSTRY</div>
                 <div class="snapshot-title">AgBe Technologies</div>
-                <div class="snapshot-desc">Software Engineer, (Client: TVS Motor Company) (Jul 2024 - Jun 2026)</div>
+                <div class="snapshot-desc">Software Engineer (Client: TVS Motor Company) (Jul 2024 – May 2026).</div>
             </div>
 
             <div class="snapshot-card">
-                <div class="snapshot-header">Graduate Degree</div>
-                <div class="snapshot-title">Master of Computer Applications) </div>
-                <div class="snapshot-desc">(2022 – 2024) Ganga Institute of Tech & Mgmt</div>
+                <div class="snapshot-header">// GRADUATE DEGREE</div>
+                <div class="snapshot-title">Master of Computer Applications (MCA)</div>
+                <div class="snapshot-desc">(2022 – 2024) Ganga Institute of Tech & Mgmt, MDU.</div>
             </div>
 
             <div class="snapshot-card">
-                <div class="snapshot-header">Undergraduate Degree</div>
-                <div class="snapshot-title">Bachelors of Computer Applications</div>
-                <div class="snapshot-desc">(2019 – 2022) Maharshi Dayanand University</div>
+                <div class="snapshot-header">// UNDERGRADUATE DEGREE</div>
+                <div class="snapshot-title">Bachelor of Computer Applications (BCA)</div>
+                <div class="snapshot-desc">(2019 – 2022) Maharshi Dayanand University.</div>
             </div>
         </div>
     </section>
@@ -107,7 +89,10 @@
         <div class="interests-grid">
             {% for item in research_interests %}
             <div class="interest-item">
-                <h3 class="interest-title">{{ item.topic }}</h3>
+                <div class="interest-header">
+                    <span class="interest-num mono">[0{{ loop.index }}]</span>
+                    <h3 class="interest-title">{{ item.topic }}</h3>
+                </div>
                 <p class="interest-desc">{{ item.description }}</p>
             </div>
             {% endfor %}
