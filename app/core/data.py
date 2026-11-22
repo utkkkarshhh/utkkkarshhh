@@ -8,7 +8,7 @@ from typing import Dict, List, Any
 
 PROFILE: Dict[str, Any] = {
     "name": "Utkarsh Bhardwaj",
-    "headline": "Backend Software Engineer & Prospective Graduate Student",
+    "headline": "Software Engineer & Aspiring Graduate Student",
     "subheadline": "Distributed Systems · Backend Architecture · Cloud Workflows",
     "current_role": "Solution Specialist Engineer @ NielsenIQ (NIQ)",
     "current_team": "Global Innovation Team",

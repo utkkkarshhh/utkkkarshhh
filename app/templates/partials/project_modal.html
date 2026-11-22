@@ -41,9 +41,8 @@
         <div class="modal-footer">
             <div class="modal-footer-left">
                 {% if project.has_thesis %}
-                <button hx-get="/projects/{{ project.slug }}/thesis" 
-                        hx-target="#modal-container" 
-                        class="btn btn-primary btn-sm">
+                <button hx-get="/projects/{{ project.slug }}/thesis" hx-target="#modal-container"
+                    class="btn btn-primary btn-sm">
                     View Thesis / Project Report 📄
                 </button>
                 {% endif %}
