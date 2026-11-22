@@ -1,0 +1,84 @@
+<div class="page-container space-y-8">
+
+    <div class="page-header">
+        <h1 class="page-title">Contact & Inquiries</h1>
+        <p class="page-description">
+            I am always open to discussions regarding prospective Master's / Ph.D. graduate opportunities, backend engineering, or systems design.
+        </p>
+    </div>
+
+    <div class="contact-grid">
+        
+        <!-- Contact Information -->
+        <div class="contact-info-card">
+            <h2 class="contact-card-title">Get in Touch</h2>
+            
+            <div class="contact-channels">
+                <div class="channel-item">
+                    <div class="channel-label">Email:</div>
+                    <a href="mailto:{{ profile.email }}" class="channel-value">{{ profile.email }}</a>
+                </div>
+
+                <div class="channel-item">
+                    <div class="channel-label">Phone:</div>
+                    <a href="tel:{{ profile.phone }}" class="channel-value">{{ profile.phone }}</a>
+                </div>
+
+                <div class="channel-item">
+                    <div class="channel-label">Location:</div>
+                    <div class="channel-value">{{ profile.location }}</div>
+                </div>
+
+                <div class="channel-item">
+                    <div class="channel-label">Profiles:</div>
+                    <div class="channel-links">
+                        <a href="{{ profile.github }}" target="_blank" rel="noopener">GitHub ({{ profile.github_handle }})</a>
+                        <span class="dot">·</span>
+                        <a href="{{ profile.linkedin }}" target="_blank" rel="noopener">LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-note">
+                <strong>Graduate Aspirant Notice:</strong> Actively preparing applications for upcoming graduate admissions cycles in Computer Science (Distributed Systems, Concurrency, and Backend Infrastructure).
+            </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="contact-form-card" id="contact-form-container">
+            <h2 class="contact-card-title">Send a Message</h2>
+
+            <form hx-post="/contact" 
+                  hx-target="#contact-form-container" 
+                  hx-swap="innerHTML"
+                  class="simple-form space-y-4">
+                
+                <div>
+                    <label class="form-label" for="name">Your Name</label>
+                    <input type="text" id="name" name="name" required placeholder="Name" class="form-input">
+                </div>
+
+                <div>
+                    <label class="form-label" for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required placeholder="name@example.com" class="form-input">
+                </div>
+
+                <div>
+                    <label class="form-label" for="subject">Subject</label>
+                    <input type="text" id="subject" name="subject" placeholder="Graduate Opportunity / Systems / Discussion" class="form-input">
+                </div>
+
+                <div>
+                    <label class="form-label" for="message">Message</label>
+                    <textarea id="message" name="message" rows="5" required placeholder="Write your message here..." class="form-textarea"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-full">
+                    Send Message
+                </button>
+            </form>
+        </div>
+
+    </div>
+
+</div>

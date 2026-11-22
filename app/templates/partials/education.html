@@ -1,0 +1,81 @@
+<div class="page-container space-y-8">
+
+    <div class="page-header">
+        <h1 class="page-title">Education & Academic Background</h1>
+        <p class="page-description">
+            Academic degrees in Computer Applications with foundational coursework in algorithms, operating systems, and computer architecture.
+        </p>
+    </div>
+
+    <!-- Degrees List -->
+    <div class="space-y-6">
+        {% for edu in education %}
+        <article class="education-card">
+            <div class="education-header">
+                <div>
+                    <h2 class="education-degree">{{ edu.degree }}</h2>
+                    <div class="education-institution">
+                        {{ edu.institution }}{% if edu.university and edu.university != edu.institution %}, {{ edu.university }}{% endif %}
+                    </div>
+                </div>
+                <div class="education-meta">
+                    <span class="education-period">{{ edu.period }}</span>
+                    <span class="education-location">{{ edu.location }}</span>
+                </div>
+            </div>
+
+            <!-- Relevant Courses -->
+            <div class="education-courses">
+                <div class="courses-label">Key Coursework:</div>
+                <div class="courses-list">
+                    {% for c in edu.courses %}
+                    <span class="course-tag">{{ c }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Major Projects if applicable -->
+            {% if edu.major_projects %}
+            <div class="education-projects">
+                <div class="courses-label">Degree Major Projects & Theses:</div>
+                <div class="education-projects-grid">
+                    {% for mp in edu.major_projects %}
+                    <div class="edu-project-item">
+                        <div class="edu-project-type">{{ mp.type }}</div>
+                        <div class="edu-project-title">{{ mp.title }}</div>
+                        <div class="mt-2">
+                            <button hx-get="/projects/{{ mp.slug }}/thesis" 
+                                    hx-target="#modal-container" 
+                                    class="btn btn-secondary btn-sm">
+                                View Thesis / Defense Details 📄
+                            </button>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+        </article>
+        {% endfor %}
+    </div>
+
+    <!-- Graduate School Aspirations -->
+    <section class="aspirations-card">
+        <h2 class="aspirations-title">Graduate Studies (MS / Ph.D.) Aspirations</h2>
+        <p class="aspirations-text">
+            Having built and shipped high-scale distributed workflows and microservices in production at TVS Motor and NIQ, 
+            I am keen to transition into academic research through a Master's or Ph.D. program in Computer Science. 
+            I am particularly interested in research labs focusing on <strong>Distributed Systems</strong>, 
+            <strong>Consensus Protocols</strong>, <strong>Asynchronous Runtimes</strong>, and <strong>Systems Reliability</strong>.
+        </p>
+        <div class="aspirations-actions">
+            <a href="/contact" hx-get="/contact" hx-target="#main-content" hx-push-url="true" class="btn btn-primary btn-sm">
+                Inquire Regarding Research / Graduate Opportunities →
+            </a>
+            <a href="mailto:{{ profile.email }}" class="btn btn-outline btn-sm">
+                Direct Email (utkarshbhardwajmail@gmail.com)
+            </a>
+        </div>
+    </section>
+
+</div>

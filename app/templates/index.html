@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% if active_tab == 'about' %}
+        {% include "partials/overview.html" %}
+    {% elif active_tab == 'experience' %}
+        {% include "partials/experience.html" %}
+    {% elif active_tab == 'projects' %}
+        {% include "partials/projects.html" %}
+    {% elif active_tab == 'education' %}
+        {% include "partials/education.html" %}
+    {% elif active_tab == 'skills' %}
+        {% include "partials/skills.html" %}
+    {% elif active_tab == 'contact' %}
+        {% include "partials/contact.html" %}
+    {% else %}
+        {% include "partials/overview.html" %}
+    {% endif %}
+{% endblock %}

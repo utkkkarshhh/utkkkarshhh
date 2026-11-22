@@ -1,0 +1,62 @@
+<div class="page-container space-y-8">
+
+    <div class="page-header">
+        <h1 class="page-title">Featured Projects & Academic Work</h1>
+        <p class="page-description">
+            Selected systems engineering and academic degree projects, including major projects developed during Master of Computer Applications (MCA) with thesis and dissertation documentation.
+        </p>
+    </div>
+
+    <div class="projects-grid">
+        {% for project in projects %}
+        <article class="project-card">
+            <div class="project-card-header">
+                <span class="project-badge">{{ project.academic_tag }}</span>
+                {% if project.has_thesis %}
+                <span class="thesis-badge">Thesis / Report Available</span>
+                {% endif %}
+            </div>
+
+            <h2 class="project-title">{{ project.name }}</h2>
+            <p class="project-summary">{{ project.summary }}</p>
+
+            <div class="project-tech-list">
+                {% for tech in project.tech_stack %}
+                <span class="tech-tag">{{ tech }}</span>
+                {% endfor %}
+            </div>
+
+            <div class="project-highlights">
+                <ul>
+                    {% for h in project.highlights %}
+                    <li>{{ h }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="project-actions">
+                <button hx-get="/projects/{{ project.slug }}" 
+                        hx-target="#modal-container" 
+                        class="btn btn-secondary btn-sm">
+                    Project Overview ⊞
+                </button>
+
+                {% if project.has_thesis %}
+                <button hx-get="/projects/{{ project.slug }}/thesis" 
+                        hx-target="#modal-container" 
+                        class="btn btn-primary btn-sm">
+                    Thesis / Dissertation Report 📄
+                </button>
+                {% endif %}
+
+                {% if project.github %}
+                <a href="{{ project.github }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">
+                    GitHub ↗
+                </a>
+                {% endif %}
+            </div>
+        </article>
+        {% endfor %}
+    </div>
+
+</div>

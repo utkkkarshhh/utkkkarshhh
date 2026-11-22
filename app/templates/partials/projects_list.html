@@ -1,0 +1,69 @@
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {% for project in projects %}
+    <div class="project-card border rounded-lg overflow-hidden bg-surface flex flex-col hover-border transition">
+        
+        <!-- Screenshot with category pill -->
+        <div class="project-img-wrapper relative bg-subtle border-b">
+            <img src="{{ project.image }}" alt="{{ project.name }}" class="project-img" onerror="this.src='/static/img/projects/GhostMail.png'">
+            <div class="project-badges absolute top-3 left-3 flex items-center gap-1.5">
+                <span class="badge badge-accent mono text-xs">{{ project.category }}</span>
+                {% if project.featured %}
+                <span class="badge badge-neutral mono text-xs">FEATURED</span>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="p-6 flex-1 flex flex-col">
+            <h3 class="font-bold text-primary text-lg mb-2">
+                {{ project.name }}
+            </h3>
+
+            <p class="text-secondary text-xs md:text-sm leading-relaxed mb-4 flex-1">
+                {{ project.summary }}
+            </p>
+
+            <!-- Key Metric / Performance Callout -->
+            <div class="metric-callout mono text-xs text-accent mb-4 p-2.5 rounded bg-subtle border">
+                <div class="text-muted text-[10px] uppercase tracking-wider mb-0.5">Systems Metric:</div>
+                <div>⚡ {{ project.metrics }}</div>
+            </div>
+
+            <!-- Tech Stack Tags -->
+            <div class="flex flex-wrap gap-1.5 mb-5">
+                {% for tech in project.tech_stack %}
+                <span class="pill-tag mono text-xs">{{ tech }}</span>
+                {% endfor %}
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex items-center gap-2 pt-3 border-t mt-auto">
+                <button hx-get="/projects/{{ project.slug }}" 
+                        hx-target="#modal-container"
+                        class="btn btn-secondary btn-sm mono flex-1 text-center">
+                    Architecture Deep-Dive ⊞
+                </button>
+                
+                {% if project.github %}
+                <a href="{{ project.github }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm mono" title="GitHub Source">
+                    GitHub ↗
+                </a>
+                {% endif %}
+
+                {% if project.demo %}
+                <a href="{{ project.demo }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm mono" title="Live Deployment">
+                    Live ↗
+                </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="col-span-3 text-center py-12 border border-dashed rounded-lg bg-surface">
+        <div class="mono text-muted text-sm mb-2">// NO_PROJECTS_FOUND</div>
+        <p class="text-secondary text-sm">No systems projects found in this domain filter.</p>
+        <button hx-get="/projects?category=All" hx-target="#projects-list" class="btn btn-primary btn-sm mono mt-4">
+            Show All Projects
+        </button>
+    </div>
+    {% endfor %}
+</div>

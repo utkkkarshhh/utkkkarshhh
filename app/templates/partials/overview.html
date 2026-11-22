@@ -1,0 +1,103 @@
+<div class="page-container space-y-10">
+
+    <!-- Profile Intro Section -->
+    <section class="intro-card">
+        <div class="intro-grid">
+            <div class="intro-avatar-col">
+                <div class="avatar-wrapper">
+                    <img src="{{ profile.avatar_url }}" alt="{{ profile.name }}" class="avatar-image" onerror="this.src='/static/img/utkarsh-logo.jpg'">
+                </div>
+                <div class="intro-contact-links">
+                    <a href="mailto:{{ profile.email }}" class="contact-pill">Email ✉</a>
+                    <a href="{{ profile.github }}" target="_blank" rel="noopener" class="contact-pill">GitHub ↗</a>
+                    <a href="{{ profile.linkedin }}" target="_blank" rel="noopener" class="contact-pill">LinkedIn ↗</a>
+                </div>
+            </div>
+
+            <div class="intro-content-col">
+                <div class="role-badge">{{ profile.current_role }} · {{ profile.current_team }}</div>
+                <h1 class="intro-name">{{ profile.name }}</h1>
+                <p class="intro-subtitle">{{ profile.headline }}</p>
+
+                <div class="intro-bio">
+                    <p>
+                        I am a Backend Software Engineer currently with the <strong>Global Innovation Team at NielsenIQ (NIQ)</strong>. 
+                        Previously, I worked at <strong>AgBe Technologies</strong> (Client: TVS Motor Company), where I engineered high-throughput 
+                        coupon generation and event-driven ingestion pipelines processing millions of records on Azure, and interned at US-based startup <strong>Timeli LLC</strong>.
+                    </p>
+                    <p>
+                        I completed my <strong>Master of Computer Applications (MCA)</strong> at Ganga Institute of Technology and Management (2022–2024) 
+                        and my <strong>Bachelor of Computer Applications (BCA)</strong> at Maharshi Dayanand University (2019–2022).
+                    </p>
+                </div>
+
+                <!-- Academic Aspirations Card -->
+                <div class="academic-callout">
+                    <div class="callout-label">Graduate Studies & Research Aspirations</div>
+                    <p>
+                        Having architected production data workflows and backend services at scale, I am actively preparing applications 
+                        for <strong>Master's and Ph.D. programs in Computer Science</strong>. My primary areas of interest include 
+                        <strong>Distributed Systems</strong>, <strong>Concurrency & Task Scheduling</strong>, and <strong>Resilient Backend Architecture</strong>.
+                    </p>
+                </div>
+
+                <div class="intro-actions">
+                    <a href="/projects" hx-get="/projects" hx-target="#main-content" hx-push-url="true" class="btn btn-primary">
+                        View Projects & Theses →
+                    </a>
+                    <a href="/experience" hx-get="/experience" hx-target="#main-content" hx-push-url="true" class="btn btn-secondary">
+                        Professional Experience
+                    </a>
+                    <a href="{{ profile.resume_url }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+                        Download Resume (PDF) ↗
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Snapshot Grid -->
+    <section class="section-block">
+        <h2 class="section-title">Background At A Glance</h2>
+        
+        <div class="snapshot-grid">
+            <div class="snapshot-card">
+                <div class="snapshot-header">Current Appointment</div>
+                <div class="snapshot-title">NielsenIQ (NIQ)</div>
+                <div class="snapshot-desc">Solution Specialist Engineer, Global Innovation Team (June 2026 – Present).</div>
+            </div>
+
+            <div class="snapshot-card">
+                <div class="snapshot-header">Previous Industry Experience</div>
+                <div class="snapshot-title">AgBe Technologies</div>
+                <div class="snapshot-desc">Software Engineer for TVS Motor platforms (5M+ coupon batch pipeline, Azure Event Hubs).</div>
+            </div>
+
+            <div class="snapshot-card">
+                <div class="snapshot-header">Graduate Degree</div>
+                <div class="snapshot-title">MCA (2022 – 2024)</div>
+                <div class="snapshot-desc">Ganga Institute of Tech & Mgmt. Major projects in BFT Ethereum DApp & Multithreaded Scheduling.</div>
+            </div>
+
+            <div class="snapshot-card">
+                <div class="snapshot-header">Undergraduate Degree</div>
+                <div class="snapshot-title">BCA (2019 – 2022)</div>
+                <div class="snapshot-desc">Maharshi Dayanand University. Foundations in DSA, Operating Systems, DBMS & OOP.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Academic Interests Section -->
+    <section class="section-block">
+        <h2 class="section-title">Areas of Academic & Systems Interest</h2>
+        <div class="interests-grid">
+            {% for item in research_interests %}
+            <div class="interest-item">
+                <h3 class="interest-title">{{ item.topic }}</h3>
+                <p class="interest-desc">{{ item.description }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+</div>

@@ -1,0 +1,13 @@
+<div class="terminal-record mb-3">
+    <div class="terminal-command-line flex items-center gap-2 text-muted">
+        <span class="text-accent font-bold">&gt;</span>
+        <span class="text-primary font-semibold">{{ command }}</span>
+    </div>
+    {% if output_lines %}
+    <div class="terminal-output mt-1 space-y-0.5 text-secondary">
+        {% for line in output_lines %}
+        <div>{{ line }}</div>
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>

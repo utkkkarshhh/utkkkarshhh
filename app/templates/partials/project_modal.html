@@ -1,0 +1,61 @@
+<div class="modal-backdrop" onclick="handleBackdropClick(event)">
+    <div class="modal-window">
+        <div class="modal-header">
+            <div>
+                <span class="project-badge">{{ project.academic_tag }}</span>
+                <h2 class="modal-title">{{ project.name }}</h2>
+            </div>
+            <button onclick="closeModal()" class="modal-close" title="Close [Esc]">✕</button>
+        </div>
+
+        <div class="modal-body space-y-6">
+            <div>
+                <h3 class="modal-section-title">Problem Statement</h3>
+                <p class="modal-text">{{ project.problem }}</p>
+            </div>
+
+            <div>
+                <h3 class="modal-section-title">System Architecture</h3>
+                <p class="modal-text">{{ project.architecture }}</p>
+            </div>
+
+            <div>
+                <h3 class="modal-section-title">Key Engineering Highlights</h3>
+                <ul class="modal-bullets">
+                    {% for h in project.highlights %}
+                    <li>{{ h }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div>
+                <h3 class="modal-section-title">Technologies</h3>
+                <div class="project-tech-list">
+                    {% for tech in project.tech_stack %}
+                    <span class="tech-tag">{{ tech }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <div class="modal-footer-left">
+                {% if project.has_thesis %}
+                <button hx-get="/projects/{{ project.slug }}/thesis" 
+                        hx-target="#modal-container" 
+                        class="btn btn-primary btn-sm">
+                    View Thesis / Project Report 📄
+                </button>
+                {% endif %}
+            </div>
+            <div class="modal-footer-right">
+                {% if project.github %}
+                <a href="{{ project.github }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">
+                    GitHub ↗
+                </a>
+                {% endif %}
+                <button onclick="closeModal()" class="btn btn-secondary btn-sm">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

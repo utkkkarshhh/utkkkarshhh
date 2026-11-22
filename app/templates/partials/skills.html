@@ -1,0 +1,23 @@
+<div class="page-container space-y-8">
+
+    <div class="page-header">
+        <h1 class="page-title">Technical Skills & Proficiencies</h1>
+        <p class="page-description">
+            Core technologies, programming languages, cloud infrastructure, and architectural concepts applied across enterprise systems and academic projects.
+        </p>
+    </div>
+
+    <div class="skills-grid">
+        {% for category, items in skills.items() %}
+        <div class="skill-category-card">
+            <h2 class="skill-category-title">{{ category }}</h2>
+            <div class="skill-tags-wrapper">
+                {% for item in items %}
+                <span class="skill-tag">{{ item }}</span>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+</div>

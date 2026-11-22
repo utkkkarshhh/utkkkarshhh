@@ -1,0 +1,156 @@
+<div class="research-page space-y-12">
+
+    <!-- Header & Statement Header -->
+    <div class="border-b pb-6">
+        <span class="mono text-xs text-accent uppercase tracking-wider">// Academic Inquiries & Statement of Purpose</span>
+        <h1 class="text-3xl font-extrabold text-primary tracking-tight mt-1 mb-3">
+            Research Statement & Technical Inquiries
+        </h1>
+        <p class="text-secondary text-sm md:text-base max-w-3xl leading-relaxed">
+            Investigating resilient abstractions across distributed state machines, asynchronous I/O multiplexers, and decentralized cryptographic verification. Prepared for graduate research (MS / Ph.D.) admissions and collaborative labs.
+        </p>
+    </div>
+
+    <!-- Long-Form Research Statement Card -->
+    <section class="border rounded-lg p-6 md:p-8 bg-surface space-y-6">
+        <div class="flex items-center justify-between border-b pb-3">
+            <span class="badge badge-accent mono text-xs">RESEARCH PHILOSOPHY</span>
+            <span class="mono text-xs text-muted">TARGET: MS / PH.D. ADMISSIONS</span>
+        </div>
+
+        <div>
+            <h2 class="text-xl font-bold text-primary mb-3">
+                1. Systems Under Contention: Scaling Asynchronous & Distributed Primitives
+            </h2>
+            <p class="text-secondary text-sm leading-relaxed mb-3">
+                Modern hyperscale computing is undergoing a structural shift. As single-core clock frequencies plateau and heterogeneous architectures dominate, software throughput is fundamentally bounded by concurrency overhead, lock contention, and network I/O tail latency. In production distributed backends, a single slow RPC or a blocked coroutine frame can propagate cascading backpressure through an entire service topology, causing throughput collapse.
+            </p>
+            <p class="text-secondary text-sm leading-relaxed mb-4">
+                My engineering experience at <strong>Agbe Technologies</strong> with high-concurrency asynchronous microservices (FastAPI, ASGI event loops, PostgreSQL indexing, and distributed caching) has shown me that abstract algorithms must be rigorously coupled with empirical systems mechanics. I am drawn to graduate research to explore foundational questions:
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                <div class="p-4 rounded bg-subtle border">
+                    <div class="mono text-xs text-accent font-semibold mb-1">
+                        [Q1] Event Loop Starvation & Hybrid Workloads
+                    </div>
+                    <p class="text-secondary text-xs leading-relaxed">
+                        How can single-threaded asynchronous event loops (e.g., Python asyncio, Node.js libuv) dynamically detect and offload compute-heavy coroutines before they breach epoll latency SLA thresholds, without incurring excessive inter-thread context-switch jitter?
+                    </p>
+                </div>
+                <div class="p-4 rounded bg-subtle border">
+                    <div class="mono text-xs text-accent font-semibold mb-1">
+                        [Q2] Consensus Latency Under Partial Churn
+                    </div>
+                    <p class="text-secondary text-xs leading-relaxed">
+                        What hybrid state-machine replication protocols can achieve near-linear commit latencies during stable network intervals while guaranteeing safety under arbitrary Byzantine or fail-stop partitions?
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="pt-4 border-t">
+            <h2 class="text-xl font-bold text-primary mb-3">
+                2. Verifiable Computing & Decentralized Trust
+            </h2>
+            <p class="text-secondary text-sm leading-relaxed mb-4">
+                My work on projects like the <strong>Decentralized Election DApp</strong> and <strong>Ghost Mail</strong> demonstrated the friction between privacy, auditability, and gas/computational efficiency. In permissionless distributed ledgers, verifying state transitions requires cryptographic invariants that often bloat storage or latency. I am eager to study how recursive zero-knowledge proofs and succinct cryptographic commitments can be embedded into high-throughput distributed database backends.
+            </p>
+            
+            <div class="latex-box p-4 rounded bg-subtle border mono text-xs text-accent overflow-x-auto text-center">
+                $$ \text{State Transition Verification: } \pi \leftarrow \text{Prove}(\mathcal{R}, \mathcal{S}_{\text{prev}}, \mathcal{S}_{\text{next}}, \mathcal{M}) \quad \text{where } |\pi| = \mathcal{O}(1) $$
+            </div>
+        </div>
+
+        <div class="pt-4 border-t flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+            <div class="text-xs text-secondary mono">
+                Seeking labs in: <span class="text-primary font-semibold">Distributed Systems (SOSP/OSDI/EuroSys), Systems Networking, and MLSys.</span>
+            </div>
+            <a href="/contact" hx-get="/contact" hx-target="#main-content" hx-push-url="true" class="btn btn-primary mono text-xs">
+                Inquire for Graduate Collaboration →
+            </a>
+        </div>
+    </section>
+
+    <!-- Technical Working Notes & Research Essays -->
+    <section class="space-y-6">
+        <div class="section-header border-b pb-3">
+            <span class="mono text-xs text-accent uppercase tracking-wider">// Technical Notes & Working Papers</span>
+            <h2 class="text-2xl font-bold text-primary mt-1">Systems Monographs & Analysis</h2>
+            <p class="text-secondary text-xs mt-1">Deep-dive technical writings outlining systems mechanics, kernel interfaces, and concurrency trade-offs.</p>
+        </div>
+
+        <div class="space-y-6">
+            {% for note in research_notes %}
+            <article class="research-note-card border rounded-lg p-6 bg-surface hover-border transition">
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-2 mono text-xs">
+                    <div class="flex items-center gap-2">
+                        <span class="badge badge-accent">{{ note.category }}</span>
+                        <span class="text-muted">·</span>
+                        <span class="text-secondary">{{ note.date }}</span>
+                    </div>
+                    <span class="text-muted">{{ note.read_time }}</span>
+                </div>
+
+                <h3 class="text-lg md:text-xl font-bold text-primary mb-3">
+                    {{ note.title }}
+                </h3>
+
+                <p class="text-secondary text-sm leading-relaxed mb-4">
+                    {{ note.abstract }}
+                </p>
+
+                <div class="p-4 rounded bg-subtle border mb-4">
+                    <div class="mono text-xs text-accent font-semibold mb-2 uppercase tracking-wider">
+                        // Key Architectural Observations
+                    </div>
+                    <ul class="space-y-1.5 text-xs text-secondary">
+                        {% for point in note.highlights %}
+                        <li class="flex items-start gap-2">
+                            <span class="text-accent mono font-bold">›</span>
+                            <span>{{ point }}</span>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div class="flex items-center justify-between pt-2 border-t text-xs mono">
+                    <span class="text-muted">Status: Peer/Academic Working Document</span>
+                    <a href="mailto:{{ profile.email }}?subject=Discussion%20on%20{{ note.title }}" class="text-accent hover:underline">
+                        Discuss with Author ✉
+                    </a>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- Experimental Methodology & Rigor -->
+    <section class="border rounded-lg p-6 bg-surface">
+        <div class="border-b pb-3 mb-4">
+            <span class="mono text-xs text-accent uppercase tracking-wider">// Experimental Rigor</span>
+            <h3 class="text-lg font-bold text-primary">Systems Benchmarking & Profiling Methodology</h3>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
+            <div class="p-4 rounded bg-subtle border">
+                <div class="mono text-xs text-accent font-semibold mb-1">Load Generation & Tail Latency</div>
+                <p class="text-secondary text-xs leading-relaxed">
+                    Utilizing Apache JMeter and custom asynchronous Python load injectors to profile P90, P95, and P99 latency percentiles under bursty Poisson arrival rates.
+                </p>
+            </div>
+            <div class="p-4 rounded bg-subtle border">
+                <div class="mono text-xs text-accent font-semibold mb-1">Runtime Flamegraphs & I/O Traces</div>
+                <p class="text-secondary text-xs leading-relaxed">
+                    Profiling coroutine frame execution with `asyncio` instrumentation and Linux `epoll` socket state tracking to isolate blocking system calls.
+                </p>
+            </div>
+            <div class="p-4 rounded bg-subtle border">
+                <div class="mono text-xs text-accent font-semibold mb-1">Reproducibility & Verification</div>
+                <p class="text-secondary text-xs leading-relaxed">
+                    Containerizing test harnesses with Docker Compose to reproduce network jitter, partition simulations, and deterministic database seed states.
+                </p>
+            </div>
+        </div>
+    </section>
+
+</div>

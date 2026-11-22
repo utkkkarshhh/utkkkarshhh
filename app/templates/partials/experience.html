@@ -1,0 +1,43 @@
+<div class="page-container space-y-8">
+
+    <div class="page-header">
+        <h1 class="page-title">Professional Experience</h1>
+        <p class="page-description">
+            Production backend engineering across enterprise automotive, global innovation, and SaaS platforms.
+        </p>
+    </div>
+
+    <div class="timeline-list">
+        {% for item in experience %}
+        <article class="timeline-card">
+            <div class="timeline-header">
+                <div>
+                    <h2 class="timeline-role">{{ item.role }}</h2>
+                    <div class="timeline-company">
+                        <span class="company-name">{{ item.company }}</span>
+                        {% if item.client %}
+                        <span class="client-name">({{ item.client }})</span>
+                        {% endif %}
+                        {% if item.team %}
+                        <span class="team-name">· {{ item.team }}</span>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="timeline-meta">
+                    <span class="timeline-period">{{ item.period }}</span>
+                    <span class="timeline-location">{{ item.location }}</span>
+                </div>
+            </div>
+
+            <p class="timeline-summary">{{ item.summary }}</p>
+
+            <ul class="timeline-bullets">
+                {% for ach in item.achievements %}
+                <li>{{ ach }}</li>
+                {% endfor %}
+            </ul>
+        </article>
+        {% endfor %}
+    </div>
+
+</div>

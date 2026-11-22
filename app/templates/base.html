@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ profile.name }} | {{ profile.headline }}</title>
+    <meta name="description" content="{{ profile.name }} - {{ profile.headline }}. Experience at NIQ, AgBe Technologies, Timeli. MCA & BCA Graduate.">
+    <link rel="icon" type="image/jpeg" href="/favicon.ico">
+    
+    <!-- Clean Typography: Inter & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- HTMX 2.0.4 -->
+    <script src="https://unpkg.com/htmx.org@2.0.4"></script>
+    
+    <!-- Clean Minimalist Style -->
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+    <!-- Minimal Header -->
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="/" hx-get="/" hx-target="#main-content" hx-push-url="true" class="brand">
+                <span class="brand-name">{{ profile.name }}</span>
+                <span class="brand-role">{{ profile.current_role.split('@')[0].strip() }} @ NIQ</span>
+            </a>
+
+            <!-- Navigation Links -->
+            <nav class="nav-links" id="nav-container">
+                <a href="/" 
+                   hx-get="/" 
+                   hx-target="#main-content" 
+                   hx-push-url="true"
+                   class="nav-item {% if active_tab == 'about' %}active{% endif %}">
+                    About
+                </a>
+                <a href="/experience" 
+                   hx-get="/experience" 
+                   hx-target="#main-content" 
+                   hx-push-url="true"
+                   class="nav-item {% if active_tab == 'experience' %}active{% endif %}">
+                    Experience
+                </a>
+                <a href="/projects" 
+                   hx-get="/projects" 
+                   hx-target="#main-content" 
+                   hx-push-url="true"
+                   class="nav-item {% if active_tab == 'projects' %}active{% endif %}">
+                    Projects
+                </a>
+                <a href="/education" 
+                   hx-get="/education" 
+                   hx-target="#main-content" 
+                   hx-push-url="true"
+                   class="nav-item {% if active_tab == 'education' %}active{% endif %}">
+                    Education
+                </a>
+                <a href="/skills" 
+                   hx-get="/skills" 
+                   hx-target="#main-content" 
+                   hx-push-url="true"
+                   class="nav-item {% if active_tab == 'skills' %}active{% endif %}">
+                    Skills
+                </a>
+                <a href="/contact" 
+                   hx-get="/contact" 
+                   hx-target="#main-content" 
+                   hx-push-url="true"
+                   class="nav-item {% if active_tab == 'contact' %}active{% endif %}">
+                    Contact
+                </a>
+            </nav>
+
+            <!-- Quick Action Links -->
+            <div class="header-actions">
+                <button id="theme-toggle-btn" class="theme-toggle" title="Toggle Dark/Light Mode" onclick="toggleTheme()">
+                    <span id="theme-icon">◐</span>
+                </button>
+                <a href="{{ profile.resume_url }}" target="_blank" rel="noopener noreferrer" class="btn-resume">
+                    Resume ↗
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Swapped via HTMX or SSR -->
+    <main id="main-content" class="container content-area">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Modal Container for Project Architecture & Thesis Details -->
+    <div id="modal-container"></div>
+
+    <!-- Minimal Footer -->
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <div class="footer-left">
+                <span>© {{ profile.name }}</span>
+                <span class="dot">·</span>
+                <span>{{ profile.location }}</span>
+            </div>
+            <div class="footer-links">
+                <a href="mailto:{{ profile.email }}">Email</a>
+                <span class="dot">·</span>
+                <a href="{{ profile.github }}" target="_blank" rel="noopener">GitHub</a>
+                <span class="dot">·</span>
+                <a href="{{ profile.linkedin }}" target="_blank" rel="noopener">LinkedIn</a>
+                <span class="dot">·</span>
+                <a href="tel:{{ profile.phone }}">{{ profile.phone }}</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Client Script -->
+    <script src="/static/js/main.js"></script>
+</body>
+</html>
