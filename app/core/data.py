@@ -15,7 +15,6 @@ PROFILE: Dict[str, Any] = {
     "current_since": "June 2026 – Present",
     "location": "Gurugram / Delhi-NCR, India",
     "email": "utkarshbhardwajmail@gmail.com",
-    "phone": "+91 94666 24224",
     "github": "https://github.com/utkkkarshhh",
     "github_handle": "utkkkarshhh",
     "linkedin": "https://linkedin.com/in/utkkkarshhh",
