@@ -3,6 +3,8 @@
 {% block content %}
     {% if active_tab == 'about' %}
         {% include "partials/overview.html" %}
+    {% elif active_tab == 'myself' %}
+        {% include "partials/myself.html" %}
     {% elif active_tab == 'experience' %}
         {% include "partials/experience.html" %}
     {% elif active_tab == 'projects' %}

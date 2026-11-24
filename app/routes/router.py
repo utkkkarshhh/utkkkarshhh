@@ -12,6 +12,9 @@ from app.core.data import (
     PROJECTS,
     SKILLS,
     RESEARCH_INTERESTS,
+    SPOTIFY_CONFIG,
+    PERSONAL_INTERESTS,
+    SIDE_PROJECTS,
 )
 
 router = APIRouter()
@@ -52,9 +55,26 @@ async def page_about(request: Request):
         "projects": PROJECTS,
         "skills": SKILLS,
         "research_interests": RESEARCH_INTERESTS,
+        "spotify": SPOTIFY_CONFIG,
+        "personal_interests": PERSONAL_INTERESTS,
+        "side_projects": SIDE_PROJECTS,
     }
     if is_partial_request(request):
         return templates.TemplateResponse(request=request, name="partials/overview.html", context=context)
+    return templates.TemplateResponse(request=request, name="index.html", context=context)
+
+
+@router.get("/myself", response_class=HTMLResponse)
+async def page_myself(request: Request):
+    context = {
+        "profile": PROFILE,
+        "active_tab": "myself",
+        "spotify": SPOTIFY_CONFIG,
+        "personal_interests": PERSONAL_INTERESTS,
+        "side_projects": SIDE_PROJECTS,
+    }
+    if is_partial_request(request):
+        return templates.TemplateResponse(request=request, name="partials/myself.html", context=context)
     return templates.TemplateResponse(request=request, name="index.html", context=context)
 
 

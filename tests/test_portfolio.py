@@ -26,11 +26,18 @@ class TestPortfolioApplication:
             assert "<!DOCTYPE html>" not in response.text
 
     def test_htmx_partial_routes(self, client):
-        for route in ["/experience", "/projects", "/education", "/skills", "/contact"]:
+        for route in ["/myself", "/experience", "/projects", "/education", "/skills", "/contact"]:
             for target in ["main-content", "#main-content"]:
                 res = client.get(route, headers={"HX-Request": "true", "HX-Target": target})
                 assert res.status_code == 200
                 assert "<!DOCTYPE html>" not in res.text
+
+    def test_myself_page(self, client):
+        res = client.get("/myself")
+        assert res.status_code == 200
+        assert "Utkarsh Bhardwaj — Myself" in res.text
+        assert "Coding Soundtrack" in res.text
+        assert "Spotify" in res.text or "spotify" in res.text
 
     def test_experience_page(self, client):
         res = client.get("/experience")

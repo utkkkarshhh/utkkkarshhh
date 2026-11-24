@@ -246,3 +246,77 @@ RESEARCH_INTERESTS: List[Dict[str, str]] = [
         "description": "Event-driven stream ingestion (Event Hubs, Kafka), distributed caching topologies (Redis), and transactional database optimizations."
     }
 ]
+
+# ============================================================================
+# Personal, Playful & Friendly Dimension: Music, Side Quests & Offline Interests
+# ============================================================================
+
+SPOTIFY_CONFIG: Dict[str, Any] = {
+    "playlist_title": "Deep Focus // Late Night Systems",
+    "playlist_curator": "Utkarsh Bhardwaj",
+    "playlist_subtitle": "Synthwave, Lo-Fi & Minimal Techno for Engineering Workflows",
+    "playlist_url": "https://open.spotify.com/playlist/37i9dQZF1DXdLEN7aqioXM",
+    "embed_url": "https://open.spotify.com/embed/playlist/37i9dQZF1DXdLEN7aqioXM?utm_source=generator&theme=0",
+    "status_text": "On Repeat in Headphones",
+    "vibe_tags": ["Lo-Fi Beats", "Dark Synthwave", "Ambient Electronic", "Game OSTs"]
+}
+
+PERSONAL_INTERESTS: List[Dict[str, Any]] = [
+    {
+        "icon": "☕",
+        "title": "Chai & Specialty Coffee",
+        "tag": "Daily Ritual",
+        "description": "Fueling deep debugging sessions with artisanal medium roasts and evening spiced masala chai brews."
+    },
+    {
+        "icon": "⌨️",
+        "title": "Mechanical Keyboards & Setups",
+        "tag": "Tactile Obsession",
+        "description": "Huge fan of custom tactile switches, deep sound profiles, clean desk ergonomics, and tailored Neovim & Zsh keybindings."
+    },
+    {
+        "icon": "📚",
+        "title": "Sci-Fi & Tech History",
+        "tag": "Reading List",
+        "description": "Fascinated by cyberpunk classics, the early architecture of Arpanet & Unix, and Isaac Asimov's Foundation."
+    },
+    {
+        "icon": "🎧",
+        "title": "Sonic Curation & Playlists",
+        "tag": "Soundtrack",
+        "description": "Always curating playlists for different coding states: high-energy synth for race conditions, ambient piano for papers."
+    },
+    {
+        "icon": "🏃",
+        "title": "Evening Walks & Fitness",
+        "tag": "Cache Invalidation",
+        "description": "Stepping away from screens to clear headspace, reset mental queues, and think through system designs."
+    }
+]
+
+SIDE_PROJECTS: List[Dict[str, Any]] = [
+    {
+        "name": "Ghost Mail / Temp Inbox",
+        "badge": "Privacy Utility",
+        "summary": "A lightweight disposable email receiver and webhook utility for fast testing, automated verification, and clean inboxes.",
+        "icon": "📬",
+        "tech": ["Python", "FastAPI", "Webhooks"],
+        "github": "https://github.com/utkkkarshhh/ghost-mail"
+    },
+    {
+        "name": "Custom Dotfiles & Terminal Rice",
+        "badge": "Workflow",
+        "summary": "My personalized terminal cockpit: modular Zsh aliases, tmux workspace layouts, and lightning-fast keyboard navigation.",
+        "icon": "⚙️",
+        "tech": ["Bash", "Zsh", "Tmux"],
+        "github": "https://github.com/utkkkarshhh"
+    },
+    {
+        "name": "Async Workflow Sandbox",
+        "badge": "Experiment",
+        "summary": "Mini playground comparing event-loop dispatching, coroutine latencies, and thread pool workers under simulated spikes.",
+        "icon": "⚡",
+        "tech": ["asyncio", "Python", "Locust"],
+        "github": "https://github.com/utkkkarshhh"
+    }
+]

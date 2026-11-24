@@ -1,34 +1,41 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ profile.name }} | {{ profile.headline }}</title>
-    <meta name="description" content="{{ profile.name }} - {{ profile.headline }}. Experience at NIQ, AgBe Technologies, Timeli. MCA & BCA Graduate.">
+    <meta name="description"
+        content="{{ profile.name }} - {{ profile.headline }}. Experience at NIQ, AgBe Technologies, Timeli. MCA & BCA Graduate.">
     <link rel="icon" type="image/jpeg" href="/favicon.ico">
-    
+
     <!-- Clean Typography: Inter & JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
     <!-- HTMX 2.0.4 -->
     <script src="https://unpkg.com/htmx.org@2.0.4"></script>
-    
+
     <!-- Modern Systems Portfolio Style -->
-    <link rel="stylesheet" href="/static/css/style.css?v=2.2">
+    <link rel="stylesheet" href="/static/css/style.css?v=2.6">
 </head>
+
 <body>
 
     <!-- Standalone Top-Right Controls & Accessibility Bar -->
     <aside class="corner-utility-bar" aria-label="Quick Controls and Accessibility">
-        <button id="theme-toggle-btn" class="corner-theme-toggle" onclick="toggleTheme()" title="Toggle Dark/Light Mode [T]" aria-label="Toggle Theme">
+        <button id="theme-toggle-btn" class="corner-theme-toggle" onclick="toggleTheme()"
+            title="Toggle Dark/Light Mode [T]" aria-label="Toggle Theme">
             <span id="theme-icon" class="corner-theme-icon">◐</span>
             <span class="corner-theme-label mono">theme</span>
             <span class="corner-theme-kbd mono">T</span>
         </button>
 
-        <button id="a11y-toggle-btn" class="corner-theme-toggle a11y-btn" onclick="openA11yModal()" title="Accessibility Preferences & Keyboard Shortcuts [A]" aria-label="Accessibility & Shortcuts">
+        <button id="a11y-toggle-btn" class="corner-theme-toggle a11y-btn" onclick="openA11yModal()"
+            title="Accessibility Preferences & Keyboard Shortcuts [A]" aria-label="Accessibility & Shortcuts">
             <span class="corner-theme-icon">♿</span>
             <span class="corner-theme-label mono">shortcuts & a11y</span>
             <span class="corner-theme-kbd mono">A</span>
@@ -48,53 +55,44 @@
 
             <!-- Navigation Links with Keyboard Shortcuts -->
             <nav class="nav-links" id="nav-container">
-                <a href="/" 
-                   hx-get="/" 
-                   hx-target="#main-content" 
-                   hx-push-url="true"
-                   class="nav-item {% if active_tab == 'about' %}active{% endif %}">
+                <a href="/" hx-get="/" hx-target="#main-content" hx-push-url="true" data-nav="about"
+                    class="nav-item {% if active_tab == 'about' %}active{% endif %}">
                     <span>About</span>
                     <span class="nav-kbd">1</span>
                 </a>
-                <a href="/experience" 
-                   hx-get="/experience" 
+                <a href="/myself" 
+                   hx-get="/myself" 
                    hx-target="#main-content" 
                    hx-push-url="true"
-                   class="nav-item {% if active_tab == 'experience' %}active{% endif %}">
-                    <span>Experience</span>
+                   data-nav="myself"
+                   class="nav-item {% if active_tab == 'myself' %}active{% endif %}">
+                    <span>Myself</span>
                     <span class="nav-kbd">2</span>
                 </a>
-                <a href="/projects" 
-                   hx-get="/projects" 
-                   hx-target="#main-content" 
-                   hx-push-url="true"
-                   class="nav-item {% if active_tab == 'projects' %}active{% endif %}">
-                    <span>Projects</span>
+                <a href="/experience" hx-get="/experience" hx-target="#main-content" hx-push-url="true"
+                    data-nav="experience" class="nav-item {% if active_tab == 'experience' %}active{% endif %}">
+                    <span>Experience</span>
                     <span class="nav-kbd">3</span>
                 </a>
-                <a href="/education" 
-                   hx-get="/education" 
-                   hx-target="#main-content" 
-                   hx-push-url="true"
-                   class="nav-item {% if active_tab == 'education' %}active{% endif %}">
-                    <span>Education</span>
+                <a href="/projects" hx-get="/projects" hx-target="#main-content" hx-push-url="true" data-nav="projects"
+                    class="nav-item {% if active_tab == 'projects' %}active{% endif %}">
+                    <span>Projects</span>
                     <span class="nav-kbd">4</span>
                 </a>
-                <a href="/skills" 
-                   hx-get="/skills" 
-                   hx-target="#main-content" 
-                   hx-push-url="true"
-                   class="nav-item {% if active_tab == 'skills' %}active{% endif %}">
-                    <span>Skills</span>
+                <a href="/education" hx-get="/education" hx-target="#main-content" hx-push-url="true"
+                    data-nav="education" class="nav-item {% if active_tab == 'education' %}active{% endif %}">
+                    <span>Education</span>
                     <span class="nav-kbd">5</span>
                 </a>
-                <a href="/contact" 
-                   hx-get="/contact" 
-                   hx-target="#main-content" 
-                   hx-push-url="true"
-                   class="nav-item {% if active_tab == 'contact' %}active{% endif %}">
-                    <span>Contact</span>
+                <a href="/skills" hx-get="/skills" hx-target="#main-content" hx-push-url="true" data-nav="skills"
+                    class="nav-item {% if active_tab == 'skills' %}active{% endif %}">
+                    <span>Skills</span>
                     <span class="nav-kbd">6</span>
+                </a>
+                <a href="/contact" hx-get="/contact" hx-target="#main-content" hx-push-url="true" data-nav="contact"
+                    class="nav-item {% if active_tab == 'contact' %}active{% endif %}">
+                    <span>Contact</span>
+                    <span class="nav-kbd">7</span>
                 </a>
             </nav>
         </div>
@@ -114,7 +112,8 @@
             <div class="modal-header">
                 <div class="flex items-center gap-2">
                     <span class="text-accent text-sm mono">♿</span>
-                    <h2 id="a11y-modal-title" class="modal-title" style="font-size: 1.15rem;">Accessibility & Keyboard Shortcuts</h2>
+                    <h2 id="a11y-modal-title" class="modal-title" style="font-size: 1.15rem;">Accessibility & Keyboard
+                        Shortcuts</h2>
                 </div>
                 <button onclick="closeA11yModal()" class="modal-close" title="Close [Esc]">✕</button>
             </div>
@@ -130,22 +129,26 @@
                         </div>
                         <div class="shortcut-item">
                             <span class="kbd">2</span>
-                            <span class="shortcut-desc">Professional Experience</span>
+                            <span class="shortcut-desc">Myself & Creative Life</span>
                         </div>
                         <div class="shortcut-item">
                             <span class="kbd">3</span>
-                            <span class="shortcut-desc">Projects & Reports</span>
+                            <span class="shortcut-desc">Professional Experience</span>
                         </div>
                         <div class="shortcut-item">
                             <span class="kbd">4</span>
-                            <span class="shortcut-desc">Education & Degrees</span>
+                            <span class="shortcut-desc">Projects & Reports</span>
                         </div>
                         <div class="shortcut-item">
                             <span class="kbd">5</span>
-                            <span class="shortcut-desc">Technical Skills</span>
+                            <span class="shortcut-desc">Education & Degrees</span>
                         </div>
                         <div class="shortcut-item">
                             <span class="kbd">6</span>
+                            <span class="shortcut-desc">Technical Skills</span>
+                        </div>
+                        <div class="shortcut-item">
+                            <span class="kbd">7</span>
                             <span class="shortcut-desc">Contact & Inquiries</span>
                         </div>
                         <div class="shortcut-item">
@@ -166,7 +169,7 @@
                 <!-- Section 2: Accessibility Preferences -->
                 <div class="a11y-preferences-section">
                     <h3 class="modal-section-title">// ACCESSIBILITY PREFERENCES</h3>
-                    
+
                     <div class="a11y-pref-group">
                         <div class="pref-label-col">
                             <div class="pref-name font-semibold text-sm">Text Size Scaling</div>
@@ -174,9 +177,12 @@
                         </div>
                         <div class="pref-control-col">
                             <div class="segmented-control" id="a11y-text-segmented">
-                                <button type="button" class="seg-btn active" data-text-size="normal" onclick="setA11yText('normal')">Default</button>
-                                <button type="button" class="seg-btn" data-text-size="large" onclick="setA11yText('large')">Large (115%)</button>
-                                <button type="button" class="seg-btn" data-text-size="xlarge" onclick="setA11yText('xlarge')">X-Large (130%)</button>
+                                <button type="button" class="seg-btn active" data-text-size="normal"
+                                    onclick="setA11yText('normal')">Default</button>
+                                <button type="button" class="seg-btn" data-text-size="large"
+                                    onclick="setA11yText('large')">Large (115%)</button>
+                                <button type="button" class="seg-btn" data-text-size="xlarge"
+                                    onclick="setA11yText('xlarge')">X-Large (130%)</button>
                             </div>
                         </div>
                     </div>
@@ -184,10 +190,12 @@
                     <div class="a11y-pref-group">
                         <div class="pref-label-col">
                             <div class="pref-name font-semibold text-sm">High Contrast Mode</div>
-                            <div class="pref-hint text-xs text-muted">Strengthen hairline borders and text contrast</div>
+                            <div class="pref-hint text-xs text-muted">Strengthen hairline borders and text contrast
+                            </div>
                         </div>
                         <div class="pref-control-col">
-                            <button type="button" id="a11y-contrast-btn" class="toggle-pill-btn" onclick="toggleA11yContrast()">
+                            <button type="button" id="a11y-contrast-btn" class="toggle-pill-btn"
+                                onclick="toggleA11yContrast()">
                                 <span class="status-indicator-dot"></span>
                                 <span id="contrast-status-text">Disabled</span>
                             </button>
@@ -197,10 +205,12 @@
                     <div class="a11y-pref-group">
                         <div class="pref-label-col">
                             <div class="pref-name font-semibold text-sm">Reduced Motion</div>
-                            <div class="pref-hint text-xs text-muted">Disable page transitions and micro-animations</div>
+                            <div class="pref-hint text-xs text-muted">Disable page transitions and micro-animations
+                            </div>
                         </div>
                         <div class="pref-control-col">
-                            <button type="button" id="a11y-motion-btn" class="toggle-pill-btn" onclick="toggleA11yMotion()">
+                            <button type="button" id="a11y-motion-btn" class="toggle-pill-btn"
+                                onclick="toggleA11yMotion()">
                                 <span class="status-indicator-dot"></span>
                                 <span id="motion-status-text">Disabled</span>
                             </button>
@@ -210,7 +220,8 @@
                     <div class="a11y-pref-group">
                         <div class="pref-label-col">
                             <div class="pref-name font-semibold text-sm">Enhanced Legibility Spacing</div>
-                            <div class="pref-hint text-xs text-muted">Expand character & line spacing for readability</div>
+                            <div class="pref-hint text-xs text-muted">Expand character & line spacing for readability
+                            </div>
                         </div>
                         <div class="pref-control-col">
                             <button type="button" id="a11y-font-btn" class="toggle-pill-btn" onclick="toggleA11yFont()">
@@ -254,6 +265,7 @@
     </footer>
 
     <!-- Client Script with cache-busting -->
-    <script src="/static/js/main.js?v=2.2"></script>
+    <script src="/static/js/main.js?v=2.4"></script>
 </body>
+
 </html>

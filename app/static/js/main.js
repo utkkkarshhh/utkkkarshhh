@@ -234,6 +234,8 @@ function syncActiveNav(targetPath) {
     let activeTab = 'about';
     if (path === '/' || path === '') {
         activeTab = 'about';
+    } else if (path.startsWith('/myself')) {
+        activeTab = 'myself';
     } else if (path.startsWith('/experience')) {
         activeTab = 'experience';
     } else if (path.startsWith('/projects')) {
@@ -250,22 +252,10 @@ function syncActiveNav(targetPath) {
 
     const navLinks = document.querySelectorAll('#nav-container .nav-item');
     navLinks.forEach(link => {
-        let href = link.getAttribute('href') || link.getAttribute('hx-get') || '';
-        href = href.split('?')[0].split('#')[0];
-        if (href.length > 1 && href.endsWith('/')) {
-            href = href.slice(0, -1);
-        }
-        if (!href) href = '/';
+        const tab = link.getAttribute('data-nav') ||
+            (link.getAttribute('href') === '/' ? 'about' : link.getAttribute('href')?.replace('/', ''));
 
-        let linkTab = 'about';
-        if (href.startsWith('/experience')) linkTab = 'experience';
-        else if (href.startsWith('/projects')) linkTab = 'projects';
-        else if (href.startsWith('/education')) linkTab = 'education';
-        else if (href.startsWith('/skills')) linkTab = 'skills';
-        else if (href.startsWith('/contact')) linkTab = 'contact';
-        else if (href === '/') linkTab = 'about';
-
-        if (linkTab === activeTab) {
+        if (tab === activeTab) {
             link.classList.add('active');
         } else {
             link.classList.remove('active');
@@ -403,32 +393,31 @@ document.addEventListener('keydown', (e) => {
         return;
     }
 
-    // Quick navigation via numeric keys 1-6
-    const numMap = {
-        '1': '/',
-        '2': '/experience',
-        '3': '/projects',
-        '4': '/education',
-        '5': '/skills',
-        '6': '/contact'
+    // Quick navigation via numeric keys 1-7
+    const numNavMap = {
+        '1': 'about',
+        '2': 'myself',
+        '3': 'experience',
+        '4': 'projects',
+        '5': 'education',
+        '6': 'skills',
+        '7': 'contact'
     };
 
-    let targetUrl = numMap[e.key];
-    if (!targetUrl && e.code) {
+    let targetTab = numNavMap[e.key];
+    if (!targetTab && e.code) {
         if (e.code.startsWith('Digit')) {
-            targetUrl = numMap[e.code.replace('Digit', '')];
+            targetTab = numNavMap[e.code.replace('Digit', '')];
         } else if (e.code.startsWith('Numpad')) {
-            targetUrl = numMap[e.code.replace('Numpad', '')];
+            targetTab = numNavMap[e.code.replace('Numpad', '')];
         }
     }
 
-    if (targetUrl) {
-        syncActiveNav(targetUrl);
-        const mainContentEl = document.getElementById('main-content');
-        if (typeof htmx !== 'undefined' && mainContentEl) {
-            htmx.ajax('GET', targetUrl, { target: mainContentEl, pushUrl: targetUrl });
-        } else {
-            window.location.href = targetUrl;
+    if (targetTab) {
+        e.preventDefault();
+        const targetLink = document.querySelector(`#nav-container [data-nav="${targetTab}"]`);
+        if (targetLink) {
+            targetLink.click();
         }
     }
 });
@@ -444,7 +433,7 @@ function initApp() {
     // Attach direct listeners to utility triggers for robust execution
     const a11yBtn = document.getElementById('a11y-toggle-btn');
     if (a11yBtn) {
-        a11yBtn.onclick = function(e) {
+        a11yBtn.onclick = function (e) {
             e.preventDefault();
             e.stopPropagation();
             openA11yModal();
@@ -453,7 +442,7 @@ function initApp() {
 
     const themeBtn = document.getElementById('theme-toggle-btn');
     if (themeBtn) {
-        themeBtn.onclick = function(e) {
+        themeBtn.onclick = function (e) {
             e.preventDefault();
             toggleTheme();
         };
@@ -472,10 +461,6 @@ document.addEventListener('htmx:afterSwap', (e) => {
         syncActiveNav(path);
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-});
-
-document.addEventListener('htmx:afterSettle', () => {
-    setTimeout(() => syncActiveNav(window.location.pathname), 10);
 });
 
 document.addEventListener('htmx:pushedIntoHistory', (e) => {

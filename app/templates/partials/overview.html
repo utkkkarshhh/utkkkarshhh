@@ -1,160 +1,302 @@
 <div class="page-container space-y-8">
 
-    <!-- Bento Grid Container -->
-    <div class="bento-grid">
+    <!-- Warm, Approachable & Modern Hero Header -->
+    <section class="intro-card hero-modern">
+        <div class="intro-grid">
+            <div class="intro-avatar-col">
+                <div class="avatar-wrapper">
+                    <img src="{{ profile.avatar_url }}" alt="{{ profile.name }}" class="avatar-image"
+                        onerror="this.src='/static/img/utkarsh-logo.jpg'">
+                </div>
+                <div class="intro-contact-links">
+                    <button id="copy-email-btn" onclick="copyEmail('{{ profile.email }}')" class="contact-pill" title="Click to copy email address">
+                        <span class="pill-icon">📋</span><span>Email</span>
+                    </button>
+                    <a href="{{ profile.resume_url }}" target="_blank" rel="noopener noreferrer" class="contact-pill" title="View & Download Resume (PDF)">
+                        <span class="pill-icon">📄</span><span>Resume</span>
+                    </a>
+                    <a href="{{ profile.github }}" target="_blank" rel="noopener" class="contact-pill" title="GitHub Profile">
+                        <span class="pill-icon">🐙</span><span>GitHub ↗</span>
+                    </a>
+                    <a href="{{ profile.linkedin }}" target="_blank" rel="noopener" class="contact-pill" title="LinkedIn Profile">
+                        <span class="pill-icon">💼</span><span>LinkedIn ↗</span>
+                    </a>
+                </div>
+            </div>
 
-        <!-- 1. Hero Profile Bento Card (Span 12) -->
-        <section class="intro-card bento-hero">
-            <div class="intro-grid">
-                <div class="intro-avatar-col">
-                    <div class="avatar-wrapper">
-                        <img src="{{ profile.avatar_url }}" alt="{{ profile.name }}" class="avatar-image"
-                            onerror="this.src='/static/img/utkarsh-logo.jpg'">
-                    </div>
-                    <div class="intro-contact-links">
-                        <button id="copy-email-btn" onclick="copyEmail('{{ profile.email }}')" class="contact-pill" title="Click to copy email address">
-                            Email 📋
-                        </button>
-                        <a href="{{ profile.resume_url }}" target="_blank" rel="noopener noreferrer" class="contact-pill" title="View & Download Resume (PDF)">
-                            Resume 📄
-                        </a>
-                        <a href="{{ profile.github }}" target="_blank" rel="noopener" class="contact-pill">GitHub ↗</a>
-                        <a href="{{ profile.linkedin }}" target="_blank" rel="noopener" class="contact-pill">LinkedIn ↗</a>
+            <div class="intro-content-col">
+                <div class="intro-top-meta">
+                    <span class="role-badge">{{ profile.current_role }}</span>
+                    <div class="status-indicator">
+                        <span class="beacon-dot"></span>
+                        <span>Aspirant · Graduate Studies</span>
                     </div>
                 </div>
 
-                <div class="intro-content-col">
-                    <div class="intro-top-meta">
-                        <span class="role-badge">{{ profile.current_role }}</span>
-                        <div class="status-indicator">
-                            <span class="beacon-dot"></span>
-                            <span>Aspirant · Graduate Studies</span>
+                <h1 class="intro-name">{{ profile.name }}</h1>
+                <p class="intro-subtitle">{{ profile.subheadline }}</p>
+
+                <div class="intro-bio">
+                    <p>
+                        Hey there! 👋 I'm Utkarsh — a Backend Software Engineer at <strong>NielsenIQ (NIQ)</strong>, building resilient cloud data workflows and modernizing core enterprise platforms. Previously, I engineered high-throughput, event-driven pipelines at <strong>AgBe Technologies</strong> (Client: TVS Motor Company) and <strong>Timeli LLC</strong>.
+                    </p>
+                    <p class="mt-2 text-secondary">
+                        Holding a <strong>Master of Computer Applications</strong> (MCA, 2024) and <strong>Bachelor of Computer Applications</strong> (BCA, 2022), I am preparing applications for <strong>Master's and Ph.D. programs in Computer Science</strong> — while always keeping time for great music, quirky side projects, and good coffee.
+                    </p>
+                </div>
+
+                <div class="intro-actions">
+                    <a href="/projects" hx-get="/projects" hx-target="#main-content" hx-push-url="true"
+                        class="btn btn-primary">
+                        Explore Projects & Reports →
+                    </a>
+                    <a href="/experience" hx-get="/experience" hx-target="#main-content" hx-push-url="true"
+                        class="btn btn-secondary">
+                        Work Experience
+                    </a>
+                    <a href="/myself" hx-get="/myself" hx-target="#main-content" hx-push-url="true"
+                        class="btn btn-playful">
+                        Explore Myself & Vibe ✨
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Two-Column Master Layout: Rigor on the Left, Myself on the Right -->
+    <div class="two-col-layout">
+
+        <!-- COLUMN 1: Professional Experience & Academic Rigor -->
+        <div class="col-rigor space-y-6">
+
+            <!-- Section Label -->
+            <div class="column-header">
+                <span class="column-tag-badge rigor-tag">⚡ SYSTEMS & RESEARCH RIGOR</span>
+                <h2 class="column-title">Engineering at Scale</h2>
+            </div>
+
+            <!-- Impact Metrics Strip -->
+            <div class="metrics-card-grid">
+                <div class="metric-cell">
+                    <div class="metric-number">5M+</div>
+                    <div class="metric-label">Records Ingested & Batched per Run</div>
+                </div>
+                <div class="metric-cell">
+                    <div class="metric-number">300K+</div>
+                    <div class="metric-label">Users Supported in Production Platforms</div>
+                </div>
+                <div class="metric-cell">
+                    <div class="metric-number">63 Pgs</div>
+                    <div class="metric-label">MCA 1st Year Major Project Report</div>
+                </div>
+                <div class="metric-cell">
+                    <div class="metric-number">35%</div>
+                    <div class="metric-label">Throughput Optimization in Concurrency</div>
+                </div>
+            </div>
+
+            <!-- Career & Systems Background Card -->
+            <div class="rigor-card specs-card">
+                <div class="card-label-row">
+                    <span class="card-label">🏛️ Career & Education Snapshot</span>
+                    <span class="text-xs text-muted mono">NIQ · AgBe · TVS</span>
+                </div>
+                <div class="specs-table">
+                    <div class="spec-row">
+                        <span class="spec-key">Current Appointment</span>
+                        <span class="spec-val">NielsenIQ (NIQ)</span>
+                        <span class="spec-sub">Solution Specialist Engineer, Global Innovation Team (June 2026 – Present)</span>
+                    </div>
+                    <div class="spec-row">
+                        <span class="spec-key">Previous Industry</span>
+                        <span class="spec-val">AgBe Technologies</span>
+                        <span class="spec-sub">Software Engineer (Client: TVS Motor Company) (Jul 2024 – May 2026)</span>
+                    </div>
+                    <div class="spec-row">
+                        <span class="spec-key">Graduate Degree</span>
+                        <span class="spec-val">Master of Computer Applications (MCA)</span>
+                        <span class="spec-sub">(2022 – 2024) Ganga Institute of Tech & Mgmt, MDU</span>
+                    </div>
+                    <div class="spec-row">
+                        <span class="spec-key">Undergraduate Degree</span>
+                        <span class="spec-val">Bachelor of Computer Applications (BCA)</span>
+                        <span class="spec-sub">(2019 – 2022) Maharshi Dayanand University</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Graduate Research Focus Card -->
+            <div class="rigor-card focus-card">
+                <div class="card-label-row">
+                    <span class="card-label">🔬 Graduate Research Focus</span>
+                    <span class="text-xs text-accent mono">MS / Ph.D. Aspirant</span>
+                </div>
+                <p class="focus-lead">
+                    Having architected and deployed high-scale event ingestion systems and asynchronous services in production, I am preparing applications for graduate research (MS / Ph.D.) to contribute to the fundamental mechanics of distributed coordination.
+                </p>
+                <div class="focus-tags">
+                    <span class="focus-tag">Distributed Systems</span>
+                    <span class="focus-tag">BFT & Consensus Protocols</span>
+                    <span class="focus-tag">Concurrency Control</span>
+                    <span class="focus-tag">High-Throughput Streaming</span>
+                    <span class="focus-tag">Systems Reliability</span>
+                </div>
+                <div class="mt-4">
+                    <a href="/contact" hx-get="/contact" hx-target="#main-content" hx-push-url="true" class="btn btn-secondary btn-sm w-full">
+                        Discuss Research & Graduate Openings →
+                    </a>
+                </div>
+            </div>
+
+            <!-- Areas of Academic & Systems Interest -->
+            <div class="rigor-card interests-summary-card">
+                <div class="card-label-row">
+                    <span class="card-label">📚 Systems Research Domains</span>
+                </div>
+                <div class="interests-compact-list space-y-3">
+                    {% for item in research_interests %}
+                    <div class="interest-compact-item">
+                        <div class="flex items-center gap-2">
+                            <span class="interest-bullet">◈</span>
+                            <span class="font-semibold text-sm">{{ item.topic }}</span>
                         </div>
+                        <p class="text-xs text-secondary mt-1 ml-4">{{ item.description }}</p>
                     </div>
-
-                    <h1 class="intro-name">{{ profile.name }}</h1>
-                    <p class="intro-subtitle">{{ profile.subheadline }}</p>
-
-                    <div class="intro-bio">
-                        <p>
-                            Backend Software Engineer at <strong>NielsenIQ (NIQ)</strong>, previously engineering high-throughput, event-driven pipelines at <strong>AgBe Technologies</strong> (Client: TVS Motor Company) and <strong>Timeli LLC</strong>. Holding an <strong>MCA</strong> (2024) and <strong>BCA</strong> (2022), I am preparing applications for <strong>Master's and Ph.D. programs in Computer Science</strong>.
-                        </p>
-                    </div>
-
-                    <div class="intro-actions">
-                        <a href="/projects" hx-get="/projects" hx-target="#main-content" hx-push-url="true"
-                            class="btn btn-primary">
-                            Explore Projects & Reports →
-                        </a>
-                        <a href="/experience" hx-get="/experience" hx-target="#main-content" hx-push-url="true"
-                            class="btn btn-secondary">
-                            Work Experience
-                        </a>
-                        <a href="{{ profile.resume_url }}" target="_blank" rel="noopener noreferrer"
-                            class="btn btn-outline">
-                            Resume (PDF) ↗
-                        </a>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
-        </section>
 
-        <!-- 2. Impact Metrics Strip (Span 12) -->
-        <div class="metrics-strip">
-            <div class="metric-cell">
-                <div class="metric-number">5M+</div>
-                <div class="metric-label">Records Ingested & Batched per Run</div>
-            </div>
-            <div class="metric-cell">
-                <div class="metric-number">300K+</div>
-                <div class="metric-label">Users Supported in Production Platforms</div>
-            </div>
-            <div class="metric-cell">
-                <div class="metric-number">63 Pgs</div>
-                <div class="metric-label">MCA 1st Year Major Project Report</div>
-            </div>
-            <div class="metric-cell">
-                <div class="metric-number">35%</div>
-                <div class="metric-label">Throughput Optimization in Concurrency</div>
-            </div>
         </div>
 
-        <!-- 3. System Specs / Career Background Bento Card (Span 6) -->
-        <div class="specs-card bento-specs">
-            <div class="card-label-row">
-                <span class="card-label">// BACKGROUND & SPECS</span>
-                <span class="text-xs text-muted mono">ref: 2026.06</span>
+        <!-- COLUMN 2: "MYSELF" — The Human, Playful & Creative Dimension -->
+        <div class="col-myself space-y-6">
+
+            <!-- Section Label -->
+            <div class="column-header">
+                <span class="column-tag-badge myself-tag">✨ THE HUMAN DIMENSION</span>
+                <h2 class="column-title">Myself & Beyond Code</h2>
             </div>
 
-            <div class="specs-table">
-                <div class="spec-row">
-                    <span class="spec-key">Current Appointment</span>
-                    <span class="spec-val">NielsenIQ (NIQ)</span>
-                    <span class="spec-sub">Solution Specialist Engineer, Global Innovation Team (June 2026 – Present)</span>
+            <!-- Friendly Personal Snapshot -->
+            <div class="myself-card personal-intro-card">
+                <div class="flex items-center gap-3 mb-2">
+                    <span class="text-2xl">👋</span>
+                    <div>
+                        <h3 class="font-semibold text-base text-primary">Utkarsh Offline</h3>
+                        <p class="text-xs text-muted">Music nerd, coffee fanatic, and serial tinkerer</p>
+                    </div>
                 </div>
-
-                <div class="spec-row">
-                    <span class="spec-key">Previous Industry</span>
-                    <span class="spec-val">AgBe Technologies</span>
-                    <span class="spec-sub">Software Engineer (Client: TVS Motor Company) (Jul 2024 – May 2026)</span>
-                </div>
-
-                <div class="spec-row">
-                    <span class="spec-key">Graduate Degree</span>
-                    <span class="spec-val">Master of Computer Applications (MCA)</span>
-                    <span class="spec-sub">(2022 – 2024) Ganga Institute of Tech & Mgmt, MDU</span>
-                </div>
-
-                <div class="spec-row">
-                    <span class="spec-key">Undergraduate Degree</span>
-                    <span class="spec-val">Bachelor of Computer Applications (BCA)</span>
-                    <span class="spec-sub">(2019 – 2022) Maharshi Dayanand University</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- 4. Graduate Research Focus Bento Card (Span 6) -->
-        <div class="focus-card bento-focus">
-            <div class="card-label-row">
-                <span class="card-label">// GRADUATE RESEARCH FOCUS</span>
-                <span class="text-xs text-muted mono">MS / Ph.D. Aspirant</span>
+                <p class="text-xs text-secondary leading-relaxed">
+                    Beyond high-throughput pipelines and consensus algorithms, I believe great engineering comes from curiosity and play. Here's a glimpse into the soundtracks, side projects, and offline rituals that keep my creative gears turning.
+                </p>
             </div>
 
-            <p class="focus-lead">
-                Having architected and deployed high-scale event ingestion systems and asynchronous services in production, I am preparing applications for graduate research (MS / Ph.D.) to contribute to the fundamental mechanics of distributed coordination.
-            </p>
+            <!-- Spotify Coding Soundtrack & Live Embed -->
+            <div class="myself-card spotify-card">
+                <div class="card-label-row">
+                    <div class="flex items-center gap-2">
+                        <span class="spotify-icon-green">🎧</span>
+                        <span class="card-label">Coding Soundtrack · On Repeat</span>
+                    </div>
+                    <div class="equalizer-bars" title="Now Vibing">
+                        <span class="equalizer-bar"></span>
+                        <span class="equalizer-bar"></span>
+                        <span class="equalizer-bar"></span>
+                        <span class="equalizer-bar"></span>
+                        <span class="equalizer-bar"></span>
+                    </div>
+                </div>
 
-            <div class="focus-tags">
-                <span class="focus-tag">Distributed Systems</span>
-                <span class="focus-tag">BFT & Consensus Protocols</span>
-                <span class="focus-tag">Concurrency Control</span>
-                <span class="focus-tag">High-Throughput Streaming</span>
-                <span class="focus-tag">Systems Reliability</span>
+                <p class="text-xs text-muted mb-3">
+                    Curated tunes fueling deep focus, concurrency tracing, and late-night architecture sessions:
+                </p>
+
+                <!-- Embedded Compact Spotify Player -->
+                <div class="spotify-embed-container mb-3">
+                    <iframe class="spotify-embed-iframe"
+                        src="{{ spotify.embed_url }}"
+                        width="100%" 
+                        height="152" 
+                        frameBorder="0" 
+                        allowfullscreen="" 
+                        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                        loading="lazy">
+                    </iframe>
+                </div>
+
+                <div class="spotify-footer-row flex items-center justify-between">
+                    <div class="vibe-tags flex flex-wrap gap-1">
+                        {% for tag in spotify.vibe_tags %}
+                        <span class="vibe-pill">{{ tag }}</span>
+                        {% endfor %}
+                    </div>
+                    <a href="{{ spotify.playlist_url }}" target="_blank" rel="noopener noreferrer" class="spotify-open-btn mono text-xs">
+                        Open Spotify ↗
+                    </a>
+                </div>
             </div>
 
-            <div class="mt-4">
-                <a href="/contact" hx-get="/contact" hx-target="#main-content" hx-push-url="true" class="btn btn-secondary btn-sm w-full">
-                    Discuss Research & Graduate Openings →
+            <!-- Personal Projects & Side Quests -->
+            <div class="myself-card side-projects-card">
+                <div class="card-label-row">
+                    <div class="flex items-center gap-2">
+                        <span>🚀</span>
+                        <span class="card-label">Personal Projects & Side Quests</span>
+                    </div>
+                    <span class="text-xs text-accent mono">builder & hacker</span>
+                </div>
+
+                <p class="text-xs text-muted mb-3">
+                    Fun developer ergonomics, CLI utilities, and sandbox experiments built for pure joy:
+                </p>
+
+                <div class="side-projects-list space-y-3">
+                    {% for sp in side_projects %}
+                    <a href="{{ sp.github }}" target="_blank" rel="noopener" class="side-project-item">
+                        <div class="side-project-icon">{{ sp.icon }}</div>
+                        <div class="side-project-info flex-1">
+                            <div class="side-project-title-row flex items-center justify-between">
+                                <span class="side-project-name font-semibold text-sm">{{ sp.name }}</span>
+                                <span class="badge-mini mono">{{ sp.badge }}</span>
+                            </div>
+                            <p class="side-project-desc text-xs text-muted mt-1">{{ sp.summary }}</p>
+                        </div>
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Beyond The Terminal / Offline Life -->
+            <div class="myself-card offline-life-card">
+                <div class="card-label-row">
+                    <div class="flex items-center gap-2">
+                        <span>☕</span>
+                        <span class="card-label">Beyond The Terminal</span>
+                    </div>
+                    <span class="text-xs text-accent mono">offline life</span>
+                </div>
+
+                <div class="offline-grid">
+                    {% for interest in personal_interests %}
+                    <div class="offline-cell">
+                        <div class="offline-icon-row flex items-center gap-2 mb-1">
+                            <span class="offline-emoji">{{ interest.icon }}</span>
+                            <span class="offline-title font-semibold text-sm">{{ interest.title }}</span>
+                            <span class="offline-tag mono text-xs text-muted ml-auto">[{{ interest.tag }}]</span>
+                        </div>
+                        <p class="offline-desc text-xs text-secondary">{{ interest.description }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Link to Full Myself Page -->
+            <div class="text-center pt-2">
+                <a href="/myself" hx-get="/myself" hx-target="#main-content" hx-push-url="true" class="btn btn-outline btn-sm w-full">
+                    View Full Personal Playground & Stories →
                 </a>
             </div>
-        </div>
 
-        <!-- 5. Academic & Systems Interests (Span 12) -->
-        <div class="bento-full section-block">
-            <h2 class="section-title">
-                <span>Areas of Academic & Systems Interest</span>
-            </h2>
-            <div class="interests-grid">
-                {% for item in research_interests %}
-                <div class="interest-item">
-                    <div class="interest-header">
-                        <span class="interest-num mono">[0{{ loop.index }}]</span>
-                        <h3 class="interest-title">{{ item.topic }}</h3>
-                    </div>
-                    <p class="interest-desc">{{ item.description }}</p>
-                </div>
-                {% endfor %}
-            </div>
         </div>
 
     </div>
