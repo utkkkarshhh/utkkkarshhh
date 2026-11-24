@@ -217,11 +217,11 @@ a {
     box-shadow: var(--shadow-lift);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    padding: 0.6rem 0.9rem;
+    padding: 0.5rem 0.85rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 0.75rem;
+    gap: 1rem;
     transition: all 0.2s ease;
 }
 
@@ -310,55 +310,86 @@ a {
     border-radius: 2px;
 }
 
-/* Header Action Tools */
-.header-actions {
+/* ==========================================================================
+   Standalone Top-Right Corner Theme Switch (Detached from Navbar)
+   ========================================================================== */
+
+.corner-utility-bar {
+    position: fixed;
+    top: 1.15rem;
+    right: 1.5rem;
+    z-index: 60;
     display: flex;
     align-items: center;
-    gap: 0.45rem;
 }
 
-.theme-toggle {
-    width: 34px;
-    height: 34px;
-    border-radius: var(--radius-sm);
-    border: 1px solid var(--border-color);
-    background-color: var(--bg-card);
-    color: var(--text-secondary);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    font-size: 0.9rem;
-    transition: all 0.15s ease;
-}
-
-.theme-toggle:hover {
-    border-color: var(--border-hover);
-    color: var(--accent);
-    background-color: var(--bg-subtle);
-    transform: rotate(15deg);
-}
-
-.btn-resume {
-    font-size: 0.75rem;
-    font-family: var(--font-mono);
-    padding: 0.4rem 0.75rem;
-    background-color: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-sm);
-    color: var(--text-primary);
-    font-weight: 600;
-    text-decoration: none;
-    transition: all 0.15s ease;
+.corner-theme-toggle {
     display: inline-flex;
     align-items: center;
     gap: 0.35rem;
+    background-color: var(--bg-glass);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-full);
+    padding: 0.35rem 0.65rem;
+    color: var(--text-secondary);
+    box-shadow: var(--shadow-subtle);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    cursor: pointer;
+    transition: all 0.15s var(--ease-out);
+    user-select: none;
+    line-height: 1;
 }
 
-.btn-resume:hover {
+.corner-theme-toggle:hover {
+    color: var(--text-primary);
     border-color: var(--accent);
+    background-color: var(--bg-card);
+    box-shadow: 0 4px 12px var(--accent-glow);
+    transform: translateY(-1px);
+}
+
+.corner-theme-icon {
+    font-size: 0.85rem;
+    display: inline-flex;
+    align-items: center;
+    transition: transform 0.25s ease, color 0.15s ease;
+}
+
+.corner-theme-toggle:hover .corner-theme-icon {
     color: var(--accent);
-    background-color: var(--accent-subtle);
+    transform: rotate(30deg);
+}
+
+.corner-theme-label {
+    font-size: 0.725rem;
+    font-weight: 600;
+    text-transform: lowercase;
+}
+
+.corner-theme-kbd {
+    font-size: 0.625rem;
+    color: var(--text-muted);
+    background-color: var(--bg-subtle);
+    border: 1px solid var(--border-color);
+    padding: 0.1rem 0.3rem;
+    border-radius: 3px;
+    line-height: 1;
+}
+
+@media (max-width: 900px) {
+    .corner-utility-bar {
+        top: 0.85rem;
+        right: 0.85rem;
+    }
+    .corner-theme-label,
+    .corner-theme-kbd {
+        display: none;
+    }
+    .corner-theme-toggle {
+        padding: 0.45rem;
+        border-radius: var(--radius-sm);
+    }
 }
 
 /* ==========================================================================
@@ -1813,14 +1844,7 @@ a {
         flex-direction: column;
         align-items: stretch;
         gap: 0.6rem;
-        padding: 0.75rem;
-    }
-
-    .header-dock-top {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
+        padding: 0.65rem 0.75rem;
     }
 
     .nav-links {

@@ -20,27 +20,25 @@
 </head>
 <body>
 
-    <!-- Floating Island Dock Header -->
+    <!-- Standalone Top-Right Corner Theme Switch (Detached from Navbar) -->
+    <aside class="corner-utility-bar">
+        <button id="theme-toggle-btn" class="corner-theme-toggle" onclick="toggleTheme()" title="Toggle Dark/Light Mode [T]" aria-label="Toggle Theme">
+            <span id="theme-icon" class="corner-theme-icon">◐</span>
+            <span class="corner-theme-label mono">theme</span>
+            <span class="corner-theme-kbd mono">T</span>
+        </button>
+    </aside>
+
+    <!-- Floating Island Dock Header (Pure Navigation) -->
     <header class="site-header">
         <div class="header-dock">
-            <div class="header-dock-top">
-                <a href="/" hx-get="/" hx-target="#main-content" hx-push-url="true" class="brand">
-                    <span class="brand-symbol">U</span>
-                    <div class="brand-text-group">
-                        <span class="brand-name">{{ profile.name }}</span>
-                        <span class="brand-role">{{ profile.current_role.split('@')[0].strip() }} @ NIQ</span>
-                    </div>
-                </a>
-
-                <div class="header-actions">
-                    <button id="theme-toggle-btn" class="theme-toggle" title="Toggle Dark/Light Mode [T]" onclick="toggleTheme()">
-                        <span id="theme-icon">◐</span>
-                    </button>
-                    <a href="{{ profile.resume_url }}" target="_blank" rel="noopener noreferrer" class="btn-resume">
-                        Resume ↗
-                    </a>
+            <a href="/" hx-get="/" hx-target="#main-content" hx-push-url="true" class="brand">
+                <span class="brand-symbol">U</span>
+                <div class="brand-text-group">
+                    <span class="brand-name">{{ profile.name }}</span>
+                    <span class="brand-role">{{ profile.current_role.split('@')[0].strip() }} @ NIQ</span>
                 </div>
-            </div>
+            </a>
 
             <!-- Navigation Links with Keyboard Shortcuts -->
             <nav class="nav-links" id="nav-container">
@@ -122,6 +120,8 @@
                 <a href="{{ profile.github }}" target="_blank" rel="noopener">GitHub</a>
                 <span class="dot">·</span>
                 <a href="{{ profile.linkedin }}" target="_blank" rel="noopener">LinkedIn</a>
+                <span class="dot">·</span>
+                <a href="{{ profile.resume_url }}" target="_blank" rel="noopener noreferrer">Resume ↗</a>
             </div>
         </div>
     </footer>

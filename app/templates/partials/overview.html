@@ -15,6 +15,9 @@
                         <button id="copy-email-btn" onclick="copyEmail('{{ profile.email }}')" class="contact-pill" title="Click to copy email address">
                             Copy Email 📋
                         </button>
+                        <a href="{{ profile.resume_url }}" target="_blank" rel="noopener noreferrer" class="contact-pill" title="View & Download Resume (PDF)">
+                            Resume PDF 📄
+                        </a>
                         <a href="{{ profile.github }}" target="_blank" rel="noopener" class="contact-pill">GitHub ↗</a>
                         <a href="{{ profile.linkedin }}" target="_blank" rel="noopener" class="contact-pill">LinkedIn ↗</a>
                     </div>
