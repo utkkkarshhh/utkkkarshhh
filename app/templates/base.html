@@ -15,17 +15,23 @@
     <!-- HTMX 2.0.4 -->
     <script src="https://unpkg.com/htmx.org@2.0.4"></script>
     
-    <!-- Modern Deep-Tech Style -->
+    <!-- Neutral Zinc / Minimalist Editorial Style -->
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
 
-    <!-- Standalone Top-Right Corner Theme Switch (Detached from Navbar) -->
-    <aside class="corner-utility-bar">
+    <!-- Standalone Top-Right Controls & Accessibility Bar -->
+    <aside class="corner-utility-bar" aria-label="Quick Controls and Accessibility">
         <button id="theme-toggle-btn" class="corner-theme-toggle" onclick="toggleTheme()" title="Toggle Dark/Light Mode [T]" aria-label="Toggle Theme">
             <span id="theme-icon" class="corner-theme-icon">◐</span>
             <span class="corner-theme-label mono">theme</span>
             <span class="corner-theme-kbd mono">T</span>
+        </button>
+
+        <button id="a11y-toggle-btn" class="corner-theme-toggle a11y-btn" onclick="openA11yModal()" title="Accessibility Preferences & Keyboard Shortcuts [A]" aria-label="Accessibility & Shortcuts">
+            <span class="corner-theme-icon">♿</span>
+            <span class="corner-theme-label mono">shortcuts & a11y</span>
+            <span class="corner-theme-kbd mono">A</span>
         </button>
     </aside>
 
@@ -102,17 +108,138 @@
     <!-- Modal Container for Project Details & Reports -->
     <div id="modal-container"></div>
 
-    <!-- Minimal Modern Footer -->
+    <!-- Accessibility & Keyboard Shortcuts Modal -->
+    <div id="a11y-modal" class="modal-backdrop a11y-modal-backdrop" style="display: none;" onclick="handleA11yBackdropClick(event)">
+        <div class="modal-window a11y-modal-window" role="dialog" aria-labelledby="a11y-modal-title" aria-modal="true">
+            <div class="modal-header">
+                <div class="flex items-center gap-2">
+                    <span class="text-accent text-sm mono">♿</span>
+                    <h2 id="a11y-modal-title" class="modal-title" style="font-size: 1.15rem;">Accessibility & Keyboard Shortcuts</h2>
+                </div>
+                <button onclick="closeA11yModal()" class="modal-close" title="Close [Esc]">✕</button>
+            </div>
+
+            <div class="modal-body space-y-6">
+                <!-- Section 1: Keyboard Shortcuts Cheat Sheet -->
+                <div>
+                    <h3 class="modal-section-title">// KEYBOARD NAVIGATION SHORTCUTS</h3>
+                    <div class="shortcuts-grid">
+                        <div class="shortcut-item">
+                            <span class="kbd">1</span>
+                            <span class="shortcut-desc">About & Overview</span>
+                        </div>
+                        <div class="shortcut-item">
+                            <span class="kbd">2</span>
+                            <span class="shortcut-desc">Professional Experience</span>
+                        </div>
+                        <div class="shortcut-item">
+                            <span class="kbd">3</span>
+                            <span class="shortcut-desc">Projects & Reports</span>
+                        </div>
+                        <div class="shortcut-item">
+                            <span class="kbd">4</span>
+                            <span class="shortcut-desc">Education & Degrees</span>
+                        </div>
+                        <div class="shortcut-item">
+                            <span class="kbd">5</span>
+                            <span class="shortcut-desc">Technical Skills</span>
+                        </div>
+                        <div class="shortcut-item">
+                            <span class="kbd">6</span>
+                            <span class="shortcut-desc">Contact & Inquiries</span>
+                        </div>
+                        <div class="shortcut-item">
+                            <span class="kbd">T</span>
+                            <span class="shortcut-desc">Toggle Dark / Light Theme</span>
+                        </div>
+                        <div class="shortcut-item">
+                            <span class="kbd">A</span>
+                            <span class="shortcut-desc">Toggle Accessibility Menu</span>
+                        </div>
+                        <div class="shortcut-item">
+                            <span class="kbd">Esc</span>
+                            <span class="shortcut-desc">Close Any Active Dialog / Modal</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 2: Accessibility Preferences -->
+                <div class="a11y-preferences-section">
+                    <h3 class="modal-section-title">// ACCESSIBILITY PREFERENCES</h3>
+                    
+                    <div class="a11y-pref-group">
+                        <div class="pref-label-col">
+                            <div class="pref-name font-semibold text-sm">Text Size Scaling</div>
+                            <div class="pref-hint text-xs text-muted">Adjust default font scale across all pages</div>
+                        </div>
+                        <div class="pref-control-col">
+                            <div class="segmented-control" id="a11y-text-segmented">
+                                <button type="button" class="seg-btn active" data-text-size="normal" onclick="setA11yText('normal')">Default</button>
+                                <button type="button" class="seg-btn" data-text-size="large" onclick="setA11yText('large')">Large (115%)</button>
+                                <button type="button" class="seg-btn" data-text-size="xlarge" onclick="setA11yText('xlarge')">X-Large (130%)</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="a11y-pref-group">
+                        <div class="pref-label-col">
+                            <div class="pref-name font-semibold text-sm">High Contrast Mode</div>
+                            <div class="pref-hint text-xs text-muted">Strengthen hairline borders and text contrast</div>
+                        </div>
+                        <div class="pref-control-col">
+                            <button type="button" id="a11y-contrast-btn" class="toggle-pill-btn" onclick="toggleA11yContrast()">
+                                <span class="status-indicator-dot"></span>
+                                <span id="contrast-status-text">Disabled</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="a11y-pref-group">
+                        <div class="pref-label-col">
+                            <div class="pref-name font-semibold text-sm">Reduced Motion</div>
+                            <div class="pref-hint text-xs text-muted">Disable page transitions and micro-animations</div>
+                        </div>
+                        <div class="pref-control-col">
+                            <button type="button" id="a11y-motion-btn" class="toggle-pill-btn" onclick="toggleA11yMotion()">
+                                <span class="status-indicator-dot"></span>
+                                <span id="motion-status-text">Disabled</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="a11y-pref-group">
+                        <div class="pref-label-col">
+                            <div class="pref-name font-semibold text-sm">Enhanced Legibility Spacing</div>
+                            <div class="pref-hint text-xs text-muted">Expand character & line spacing for readability</div>
+                        </div>
+                        <div class="pref-control-col">
+                            <button type="button" id="a11y-font-btn" class="toggle-pill-btn" onclick="toggleA11yFont()">
+                                <span class="status-indicator-dot"></span>
+                                <span id="font-status-text">Disabled</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button onclick="resetA11y()" class="btn btn-secondary btn-sm">
+                    Reset Defaults
+                </button>
+                <button onclick="closeA11yModal()" class="btn btn-primary btn-sm">
+                    Done ✓
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Minimal Modern Footer (Shortcuts cleanly moved to top Accessibility modal) -->
     <footer class="site-footer">
         <div class="container footer-inner">
             <div class="footer-left">
                 <span>© {{ profile.name }}</span>
                 <span class="dot">·</span>
                 <span>{{ profile.location }}</span>
-                <span class="dot">·</span>
-                <div class="keyboard-bar">
-                    <span class="kbd">1-6</span> nav <span class="kbd">T</span> theme <span class="kbd">Esc</span> close
-                </div>
             </div>
             <div class="footer-links">
                 <a href="mailto:{{ profile.email }}">Email</a>
