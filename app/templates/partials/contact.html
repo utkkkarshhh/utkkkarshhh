@@ -16,7 +16,12 @@
             <div class="contact-channels">
                 <div class="channel-item">
                     <div class="channel-label">Email:</div>
-                    <a href="mailto:{{ profile.email }}" class="channel-value">{{ profile.email }}</a>
+                    <div class="flex items-center gap-2">
+                        <a href="mailto:{{ profile.email }}" class="channel-value">{{ profile.email }}</a>
+                        <button type="button" onclick="copyEmail('{{ profile.email }}')" class="btn btn-secondary btn-sm" title="Copy email address" style="padding: 0.15rem 0.45rem; font-size: 0.7rem;">
+                            Copy 📋
+                        </button>
+                    </div>
                 </div>
 
                 <div class="channel-item">

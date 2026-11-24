@@ -7,13 +7,29 @@
         </p>
     </div>
 
+    <!-- Interactive Category Filter Bar -->
+    <div class="filter-bar">
+        <button class="filter-pill active" data-filter="all" onclick="filterProjects('all')">
+            All Work [4]
+        </button>
+        <button class="filter-pill" data-filter="report" onclick="filterProjects('report')">
+            Academic Project Reports [2]
+        </button>
+        <button class="filter-pill" data-filter="systems" onclick="filterProjects('systems')">
+            Systems Design [2]
+        </button>
+    </div>
+
     <div class="projects-grid">
         {% for project in projects %}
-        <article class="project-card">
+        <article class="project-card" data-category="{% if project.has_report or project.has_thesis %}report{% else %}systems{% endif %}">
             <div class="project-card-header">
                 <span class="project-badge">{{ project.academic_tag }}</span>
                 {% if project.has_report or project.has_thesis %}
-                <span class="report-badge">Project Report Available</span>
+                <span class="report-badge">Project Report ({{ project.report_pages }} Pages) 📄</span>
+                {% endif %}
+                {% if project.er_diagram %}
+                <span class="tech-tag">Architectural Schema Included</span>
                 {% endif %}
             </div>
 
@@ -45,7 +61,7 @@
                 <button hx-get="/projects/{{ project.slug }}/report" 
                         hx-target="#modal-container" 
                         class="btn btn-primary btn-sm">
-                    Project Report ({{ project.report_pages }} Pages) 📄
+                    Read Report ({{ project.report_pages }} Pages) 📄
                 </button>
                 <a href="{{ project.report_pdf }}" download class="btn btn-outline btn-sm" title="Direct Download PDF">
                     PDF ⬇

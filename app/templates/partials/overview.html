@@ -1,102 +1,159 @@
-<div class="page-container space-y-10">
+<div class="page-container space-y-8">
 
-    <!-- Profile Intro Section -->
-    <section class="intro-card">
-        <div class="intro-grid">
-            <div class="intro-avatar-col">
-                <div class="avatar-wrapper">
-                    <img src="{{ profile.avatar_url }}" alt="{{ profile.name }}" class="avatar-image"
-                        onerror="this.src='/static/img/utkarsh-logo.jpg'">
+    <!-- Bento Grid Container -->
+    <div class="bento-grid">
+
+        <!-- 1. Hero Profile Bento Card (Span 12) -->
+        <section class="intro-card bento-hero">
+            <div class="intro-grid">
+                <div class="intro-avatar-col">
+                    <div class="avatar-wrapper">
+                        <img src="{{ profile.avatar_url }}" alt="{{ profile.name }}" class="avatar-image"
+                            onerror="this.src='/static/img/utkarsh-logo.jpg'">
+                    </div>
+                    <div class="intro-contact-links">
+                        <button id="copy-email-btn" onclick="copyEmail('{{ profile.email }}')" class="contact-pill" title="Click to copy email address">
+                            Copy Email 📋
+                        </button>
+                        <a href="{{ profile.github }}" target="_blank" rel="noopener" class="contact-pill">GitHub ↗</a>
+                        <a href="{{ profile.linkedin }}" target="_blank" rel="noopener" class="contact-pill">LinkedIn ↗</a>
+                    </div>
                 </div>
-                <div class="intro-contact-links">
-                    <a href="mailto:{{ profile.email }}" class="contact-pill">Email ✉</a>
-                    <a href="{{ profile.github }}" target="_blank" rel="noopener" class="contact-pill">GitHub ↗</a>
-                    <a href="{{ profile.linkedin }}" target="_blank" rel="noopener" class="contact-pill">LinkedIn ↗</a>
+
+                <div class="intro-content-col">
+                    <div class="intro-top-meta">
+                        <span class="role-badge">{{ profile.current_role }}</span>
+                        <div class="status-indicator">
+                            <span class="beacon-dot"></span>
+                            <span>Aspirant · Graduate Studies</span>
+                        </div>
+                    </div>
+
+                    <h1 class="intro-name">{{ profile.name }}</h1>
+                    <p class="intro-subtitle">{{ profile.subheadline }}</p>
+
+                    <div class="intro-bio">
+                        <p>
+                            Backend Software Engineer at <strong>NielsenIQ (NIQ)</strong>, previously engineering high-throughput, event-driven pipelines at <strong>AgBe Technologies</strong> (Client: TVS Motor Company) and <strong>Timeli LLC</strong>. Holding an <strong>MCA</strong> (2024) and <strong>BCA</strong> (2022), I am preparing applications for <strong>Master's and Ph.D. programs in Computer Science</strong>.
+                        </p>
+                    </div>
+
+                    <div class="intro-actions">
+                        <a href="/projects" hx-get="/projects" hx-target="#main-content" hx-push-url="true"
+                            class="btn btn-primary">
+                            Explore Projects & Reports →
+                        </a>
+                        <a href="/experience" hx-get="/experience" hx-target="#main-content" hx-push-url="true"
+                            class="btn btn-secondary">
+                            Work Experience
+                        </a>
+                        <a href="{{ profile.resume_url }}" target="_blank" rel="noopener noreferrer"
+                            class="btn btn-outline">
+                            Resume (PDF) ↗
+                        </a>
+                    </div>
                 </div>
             </div>
+        </section>
 
-            <div class="intro-content-col">
-                <div class="role-badge">{{ profile.current_role }} · {{ profile.current_team }}</div>
-                <h1 class="intro-name">{{ profile.name }}</h1>
-                <p class="intro-subtitle">{{ profile.headline }}</p>
+        <!-- 2. Impact Metrics Strip (Span 12) -->
+        <div class="metrics-strip">
+            <div class="metric-cell">
+                <div class="metric-number">5M+</div>
+                <div class="metric-label">Records Ingested & Batched per Run</div>
+            </div>
+            <div class="metric-cell">
+                <div class="metric-number">300K+</div>
+                <div class="metric-label">Users Supported in Production Platforms</div>
+            </div>
+            <div class="metric-cell">
+                <div class="metric-number">63 Pgs</div>
+                <div class="metric-label">MCA 1st Year Major Project Report</div>
+            </div>
+            <div class="metric-cell">
+                <div class="metric-number">35%</div>
+                <div class="metric-label">Throughput Optimization in Concurrency</div>
+            </div>
+        </div>
 
-                <div class="intro-bio">
-                    <p>
-                        Backend Software Engineer at <strong>NielsenIQ (NIQ)</strong>, previously building high-throughput, event-driven pipelines at <strong>AgBe Technologies</strong> (Client: TVS Motor Company) and <strong>Timeli LLC</strong>. Holding an <strong>MCA</strong> (2024) and <strong>BCA</strong> (2022), I am preparing applications for <strong>Master's and Ph.D. programs in Computer Science</strong>.
-                    </p>
+        <!-- 3. System Specs / Career Background Bento Card (Span 6) -->
+        <div class="specs-card bento-specs">
+            <div class="card-label-row">
+                <span class="card-label">// BACKGROUND & SPECS</span>
+                <span class="text-xs text-muted mono">ref: 2026.06</span>
+            </div>
+
+            <div class="specs-table">
+                <div class="spec-row">
+                    <span class="spec-key">Current Appointment</span>
+                    <span class="spec-val">NielsenIQ (NIQ)</span>
+                    <span class="spec-sub">Solution Specialist Engineer, Global Innovation Team (June 2026 – Present)</span>
                 </div>
 
-                <!-- Academic Aspirations Card -->
-                <div class="academic-callout">
-                    <div class="callout-label">Graduate Studies Focus</div>
-                    <p>
-                        Focusing on <strong>Distributed Systems</strong>, <strong>Concurrency & Task Scheduling</strong>, and <strong>Resilient Backend Architecture</strong>.
-                    </p>
+                <div class="spec-row">
+                    <span class="spec-key">Previous Industry</span>
+                    <span class="spec-val">AgBe Technologies</span>
+                    <span class="spec-sub">Software Engineer (Client: TVS Motor Company) (Jul 2024 – May 2026)</span>
                 </div>
 
-                <div class="intro-actions">
-                    <a href="/projects" hx-get="/projects" hx-target="#main-content" hx-push-url="true"
-                        class="btn btn-primary">
-                        View Projects & Reports →
-                    </a>
-                    <a href="/experience" hx-get="/experience" hx-target="#main-content" hx-push-url="true"
-                        class="btn btn-secondary">
-                        Professional Experience
-                    </a>
-                    <a href="{{ profile.resume_url }}" target="_blank" rel="noopener noreferrer"
-                        class="btn btn-outline">
-                        Download Resume (PDF) ↗
-                    </a>
+                <div class="spec-row">
+                    <span class="spec-key">Graduate Degree</span>
+                    <span class="spec-val">Master of Computer Applications (MCA)</span>
+                    <span class="spec-sub">(2022 – 2024) Ganga Institute of Tech & Mgmt, MDU</span>
+                </div>
+
+                <div class="spec-row">
+                    <span class="spec-key">Undergraduate Degree</span>
+                    <span class="spec-val">Bachelor of Computer Applications (BCA)</span>
+                    <span class="spec-sub">(2019 – 2022) Maharshi Dayanand University</span>
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- Quick Snapshot Grid -->
-    <section class="section-block">
-        <h2 class="section-title">Background At A Glance</h2>
-
-        <div class="snapshot-grid">
-            <div class="snapshot-card">
-                <div class="snapshot-header">// CURRENT APPOINTMENT</div>
-                <div class="snapshot-title">NielsenIQ (NIQ)</div>
-                <div class="snapshot-desc">Solution Specialist Engineer, Global Innovation Team (June 2026 – Present).</div>
+        <!-- 4. Graduate Research Focus Bento Card (Span 6) -->
+        <div class="focus-card bento-focus">
+            <div class="card-label-row">
+                <span class="card-label">// GRADUATE RESEARCH FOCUS</span>
+                <span class="text-xs text-muted mono">MS / Ph.D. Aspirant</span>
             </div>
 
-            <div class="snapshot-card">
-                <div class="snapshot-header">// PREVIOUS INDUSTRY</div>
-                <div class="snapshot-title">AgBe Technologies</div>
-                <div class="snapshot-desc">Software Engineer (Client: TVS Motor Company) (Jul 2024 – May 2026).</div>
+            <p class="focus-lead">
+                Having architected and deployed high-scale event ingestion systems and asynchronous services in production, I am preparing applications for graduate research (MS / Ph.D.) to contribute to the fundamental mechanics of distributed coordination.
+            </p>
+
+            <div class="focus-tags">
+                <span class="focus-tag">Distributed Systems</span>
+                <span class="focus-tag">BFT & Consensus Protocols</span>
+                <span class="focus-tag">Concurrency Control</span>
+                <span class="focus-tag">High-Throughput Streaming</span>
+                <span class="focus-tag">Systems Reliability</span>
             </div>
 
-            <div class="snapshot-card">
-                <div class="snapshot-header">// GRADUATE DEGREE</div>
-                <div class="snapshot-title">Master of Computer Applications (MCA)</div>
-                <div class="snapshot-desc">(2022 – 2024) Ganga Institute of Tech & Mgmt, MDU.</div>
-            </div>
-
-            <div class="snapshot-card">
-                <div class="snapshot-header">// UNDERGRADUATE DEGREE</div>
-                <div class="snapshot-title">Bachelor of Computer Applications (BCA)</div>
-                <div class="snapshot-desc">(2019 – 2022) Maharshi Dayanand University.</div>
+            <div class="mt-4">
+                <a href="/contact" hx-get="/contact" hx-target="#main-content" hx-push-url="true" class="btn btn-secondary btn-sm w-full">
+                    Discuss Research & Graduate Openings →
+                </a>
             </div>
         </div>
-    </section>
 
-    <!-- Academic Interests Section -->
-    <section class="section-block">
-        <h2 class="section-title">Areas of Academic & Systems Interest</h2>
-        <div class="interests-grid">
-            {% for item in research_interests %}
-            <div class="interest-item">
-                <div class="interest-header">
-                    <span class="interest-num mono">[0{{ loop.index }}]</span>
-                    <h3 class="interest-title">{{ item.topic }}</h3>
+        <!-- 5. Academic & Systems Interests (Span 12) -->
+        <div class="bento-full section-block">
+            <h2 class="section-title">
+                <span>Areas of Academic & Systems Interest</span>
+            </h2>
+            <div class="interests-grid">
+                {% for item in research_interests %}
+                <div class="interest-item">
+                    <div class="interest-header">
+                        <span class="interest-num mono">[0{{ loop.index }}]</span>
+                        <h3 class="interest-title">{{ item.topic }}</h3>
+                    </div>
+                    <p class="interest-desc">{{ item.description }}</p>
                 </div>
-                <p class="interest-desc">{{ item.description }}</p>
+                {% endfor %}
             </div>
-            {% endfor %}
         </div>
-    </section>
+
+    </div>
 
 </div>

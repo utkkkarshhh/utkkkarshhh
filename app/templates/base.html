@@ -10,79 +10,89 @@
     <!-- Clean Typography: Inter & JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- HTMX 2.0.4 -->
     <script src="https://unpkg.com/htmx.org@2.0.4"></script>
     
-    <!-- Clean Minimalist Style -->
+    <!-- Modern Deep-Tech Style -->
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
 
-    <!-- Minimal Header -->
+    <!-- Floating Island Dock Header -->
     <header class="site-header">
-        <div class="container header-inner">
-            <a href="/" hx-get="/" hx-target="#main-content" hx-push-url="true" class="brand">
-                <span class="brand-name">{{ profile.name }}</span>
-                <span class="brand-role">{{ profile.current_role.split('@')[0].strip() }} @ NIQ</span>
-            </a>
+        <div class="header-dock">
+            <div class="header-dock-top">
+                <a href="/" hx-get="/" hx-target="#main-content" hx-push-url="true" class="brand">
+                    <span class="brand-symbol">U</span>
+                    <div class="brand-text-group">
+                        <span class="brand-name">{{ profile.name }}</span>
+                        <span class="brand-role">{{ profile.current_role.split('@')[0].strip() }} @ NIQ</span>
+                    </div>
+                </a>
 
-            <!-- Navigation Links -->
+                <div class="header-actions">
+                    <button id="theme-toggle-btn" class="theme-toggle" title="Toggle Dark/Light Mode [T]" onclick="toggleTheme()">
+                        <span id="theme-icon">◐</span>
+                    </button>
+                    <a href="{{ profile.resume_url }}" target="_blank" rel="noopener noreferrer" class="btn-resume">
+                        Resume ↗
+                    </a>
+                </div>
+            </div>
+
+            <!-- Navigation Links with Keyboard Shortcuts -->
             <nav class="nav-links" id="nav-container">
                 <a href="/" 
                    hx-get="/" 
                    hx-target="#main-content" 
                    hx-push-url="true"
                    class="nav-item {% if active_tab == 'about' %}active{% endif %}">
-                    About
+                    <span>About</span>
+                    <span class="nav-kbd">1</span>
                 </a>
                 <a href="/experience" 
                    hx-get="/experience" 
                    hx-target="#main-content" 
                    hx-push-url="true"
                    class="nav-item {% if active_tab == 'experience' %}active{% endif %}">
-                    Experience
+                    <span>Experience</span>
+                    <span class="nav-kbd">2</span>
                 </a>
                 <a href="/projects" 
                    hx-get="/projects" 
                    hx-target="#main-content" 
                    hx-push-url="true"
                    class="nav-item {% if active_tab == 'projects' %}active{% endif %}">
-                    Projects
+                    <span>Projects</span>
+                    <span class="nav-kbd">3</span>
                 </a>
                 <a href="/education" 
                    hx-get="/education" 
                    hx-target="#main-content" 
                    hx-push-url="true"
                    class="nav-item {% if active_tab == 'education' %}active{% endif %}">
-                    Education
+                    <span>Education</span>
+                    <span class="nav-kbd">4</span>
                 </a>
                 <a href="/skills" 
                    hx-get="/skills" 
                    hx-target="#main-content" 
                    hx-push-url="true"
                    class="nav-item {% if active_tab == 'skills' %}active{% endif %}">
-                    Skills
+                    <span>Skills</span>
+                    <span class="nav-kbd">5</span>
                 </a>
                 <a href="/contact" 
                    hx-get="/contact" 
                    hx-target="#main-content" 
                    hx-push-url="true"
                    class="nav-item {% if active_tab == 'contact' %}active{% endif %}">
-                    Contact
+                    <span>Contact</span>
+                    <span class="nav-kbd">6</span>
                 </a>
             </nav>
-
-            <!-- Quick Action Links -->
-            <div class="header-actions">
-                <button id="theme-toggle-btn" class="theme-toggle" title="Toggle Dark/Light Mode" onclick="toggleTheme()">
-                    <span id="theme-icon">◐</span>
-                </button>
-                <a href="{{ profile.resume_url }}" target="_blank" rel="noopener noreferrer" class="btn-resume">
-                    Resume ↗
-                </a>
-            </div>
         </div>
     </header>
 
@@ -94,13 +104,17 @@
     <!-- Modal Container for Project Details & Reports -->
     <div id="modal-container"></div>
 
-    <!-- Minimal Footer -->
+    <!-- Minimal Modern Footer -->
     <footer class="site-footer">
         <div class="container footer-inner">
             <div class="footer-left">
                 <span>© {{ profile.name }}</span>
                 <span class="dot">·</span>
                 <span>{{ profile.location }}</span>
+                <span class="dot">·</span>
+                <div class="keyboard-bar">
+                    <span class="kbd">1-6</span> nav <span class="kbd">T</span> theme <span class="kbd">Esc</span> close
+                </div>
             </div>
             <div class="footer-links">
                 <a href="mailto:{{ profile.email }}">Email</a>

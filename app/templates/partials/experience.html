@@ -36,6 +36,34 @@
                 <li>{{ ach }}</li>
                 {% endfor %}
             </ul>
+
+            <!-- Applied Stack Badge Strip -->
+            <div class="project-tech-list mt-4 pt-3" style="border-top: 1px dashed var(--border-color); margin-bottom: 0;">
+                <span class="text-xs text-muted mono" style="align-self: center; margin-right: 0.35rem;">Stack:</span>
+                {% if 'NielsenIQ' in item.company %}
+                    <span class="tech-tag">FastAPI</span>
+                    <span class="tech-tag">HTMX</span>
+                    <span class="tech-tag">Dagster</span>
+                    <span class="tech-tag">Azure Blob Storage</span>
+                    <span class="tech-tag">Prometheus</span>
+                    <span class="tech-tag">Grafana</span>
+                    <span class="tech-tag">Windows Server</span>
+                {% elif 'AgBe' in item.company %}
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">Django</span>
+                    <span class="tech-tag">PostgreSQL</span>
+                    <span class="tech-tag">Azure Event Hubs</span>
+                    <span class="tech-tag">Azure Event Grid</span>
+                    <span class="tech-tag">FastAPI</span>
+                    <span class="tech-tag">Docker</span>
+                {% elif 'Timeli' in item.company %}
+                    <span class="tech-tag">MongoDB</span>
+                    <span class="tech-tag">Express.js</span>
+                    <span class="tech-tag">React.js</span>
+                    <span class="tech-tag">Node.js</span>
+                    <span class="tech-tag">REST APIs</span>
+                {% endif %}
+            </div>
         </article>
         {% endfor %}
     </div>
