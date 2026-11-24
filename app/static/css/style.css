@@ -1864,17 +1864,53 @@ a {
         display: none;
     }
 
+    .intro-card {
+        padding: 1.25rem;
+    }
+
     .intro-grid {
         grid-template-columns: 1fr;
-        gap: 1.5rem;
+        gap: 1rem;
     }
 
     .intro-avatar-col {
         align-items: flex-start;
+        width: 100%;
+    }
+
+    .avatar-wrapper {
+        width: 90px;
+        height: 90px;
+        border-radius: var(--radius-sm);
+    }
+
+    .intro-contact-links {
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 100%;
+        gap: 0.35rem;
+        margin-top: 0.65rem;
+    }
+
+    .contact-pill {
+        width: auto;
+        flex: 0 0 auto;
+        padding: 0.25rem 0.55rem;
+        font-size: 0.725rem;
+        border-radius: var(--radius-full);
+    }
+
+    .intro-actions {
+        gap: 0.4rem;
+    }
+
+    .intro-actions .btn {
+        padding: 0.4rem 0.75rem;
+        font-size: 0.75rem;
     }
 
     .intro-name {
-        font-size: 1.85rem;
+        font-size: 1.75rem;
     }
 
     .pdf-frame-wrapper {
