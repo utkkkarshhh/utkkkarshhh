@@ -1,6 +1,6 @@
 <div class="page-container space-y-8">
 
-    <!-- Warm, Approachable & Modern Hero Header -->
+    <!-- 1. Warm, Approachable & Modern Hero Header -->
     <section class="intro-card hero-modern">
         <div class="intro-grid">
             <div class="intro-avatar-col">
@@ -63,42 +63,34 @@
         </div>
     </section>
 
-    <!-- Two-Column Master Layout: Rigor on the Left, Myself on the Right -->
+    <!-- 2. Impact Metrics Strip (Span 12) -->
+    <div class="metrics-card-grid">
+        <div class="metric-cell">
+            <div class="metric-number">5M+</div>
+            <div class="metric-label">Records Ingested & Batched per Run</div>
+        </div>
+        <div class="metric-cell">
+            <div class="metric-number">300K+</div>
+            <div class="metric-label">Users Supported in Production Platforms</div>
+        </div>
+        <div class="metric-cell">
+            <div class="metric-number">63 Pgs</div>
+            <div class="metric-label">MCA 1st Year Major Project Report</div>
+        </div>
+        <div class="metric-cell">
+            <div class="metric-number">35%</div>
+            <div class="metric-label">Throughput Optimization in Concurrency</div>
+        </div>
+    </div>
+
+    <!-- 3. Core Systems & Research Section (Two Column Grid) -->
     <div class="two-col-layout">
 
-        <!-- COLUMN 1: Professional Experience & Academic Rigor -->
-        <div class="col-rigor space-y-6">
-
-            <!-- Section Label -->
-            <div class="column-header">
-                <span class="column-tag-badge rigor-tag">⚡ SYSTEMS & RESEARCH RIGOR</span>
-                <h2 class="column-title">Engineering at Scale</h2>
-            </div>
-
-            <!-- Impact Metrics Strip -->
-            <div class="metrics-card-grid">
-                <div class="metric-cell">
-                    <div class="metric-number">5M+</div>
-                    <div class="metric-label">Records Ingested & Batched per Run</div>
-                </div>
-                <div class="metric-cell">
-                    <div class="metric-number">300K+</div>
-                    <div class="metric-label">Users Supported in Production Platforms</div>
-                </div>
-                <div class="metric-cell">
-                    <div class="metric-number">63 Pgs</div>
-                    <div class="metric-label">MCA 1st Year Major Project Report</div>
-                </div>
-                <div class="metric-cell">
-                    <div class="metric-number">35%</div>
-                    <div class="metric-label">Throughput Optimization in Concurrency</div>
-                </div>
-            </div>
-
-            <!-- Career & Systems Background Card -->
+        <!-- Column 1: Career & Systems Background -->
+        <div class="space-y-6">
             <div class="rigor-card specs-card">
                 <div class="card-label-row">
-                    <span class="card-label">🏛️ Career & Education Snapshot</span>
+                    <span class="card-label">🏛️ Career & Education Background</span>
                     <span class="text-xs text-muted mono">NIQ · AgBe · TVS</span>
                 </div>
                 <div class="specs-table">
@@ -123,7 +115,34 @@
                         <span class="spec-sub">(2019 – 2022) Maharshi Dayanand University</span>
                     </div>
                 </div>
+                <div class="mt-4 pt-3 border-t border-subtle">
+                    <a href="/experience" hx-get="/experience" hx-target="#main-content" hx-push-url="true" class="text-xs text-accent font-semibold flex items-center gap-1 hover:underline">
+                        View Detailed Work Experience & Production Platforms →
+                    </a>
+                </div>
             </div>
+
+            <!-- Areas of Academic & Systems Interest -->
+            <div class="rigor-card interests-summary-card">
+                <div class="card-label-row">
+                    <span class="card-label">📚 Systems Research Domains</span>
+                </div>
+                <div class="interests-compact-list space-y-3">
+                    {% for item in research_interests %}
+                    <div class="interest-compact-item">
+                        <div class="flex items-center gap-2">
+                            <span class="interest-bullet">◈</span>
+                            <span class="font-semibold text-sm">{{ item.topic }}</span>
+                        </div>
+                        <p class="text-xs text-secondary mt-1 ml-4">{{ item.description }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Column 2: Graduate Research Focus & Personal Invitation Teaser -->
+        <div class="space-y-6">
 
             <!-- Graduate Research Focus Card -->
             <div class="rigor-card focus-card">
@@ -148,153 +167,56 @@
                 </div>
             </div>
 
-            <!-- Areas of Academic & Systems Interest -->
-            <div class="rigor-card interests-summary-card">
-                <div class="card-label-row">
-                    <span class="card-label">📚 Systems Research Domains</span>
-                </div>
-                <div class="interests-compact-list space-y-3">
-                    {% for item in research_interests %}
-                    <div class="interest-compact-item">
-                        <div class="flex items-center gap-2">
-                            <span class="interest-bullet">◈</span>
-                            <span class="font-semibold text-sm">{{ item.topic }}</span>
-                        </div>
-                        <p class="text-xs text-secondary mt-1 ml-4">{{ item.description }}</p>
-                    </div>
-                    {% endfor %}
-                </div>
-            </div>
-
-        </div>
-
-        <!-- COLUMN 2: "MYSELF" — The Human, Playful & Creative Dimension -->
-        <div class="col-myself space-y-6">
-
-            <!-- Section Label -->
-            <div class="column-header">
-                <span class="column-tag-badge myself-tag">✨ THE HUMAN DIMENSION</span>
-                <h2 class="column-title">Myself & Beyond Code</h2>
-            </div>
-
-            <!-- Friendly Personal Snapshot -->
-            <div class="myself-card personal-intro-card">
-                <div class="flex items-center gap-3 mb-2">
-                    <span class="text-2xl">👋</span>
-                    <div>
-                        <h3 class="font-semibold text-base text-primary">Utkarsh Offline</h3>
-                        <p class="text-xs text-muted">Music nerd, coffee fanatic, and serial tinkerer</p>
-                    </div>
-                </div>
-                <p class="text-xs text-secondary leading-relaxed">
-                    Beyond high-throughput pipelines and consensus algorithms, I believe great engineering comes from curiosity and play. Here's a glimpse into the soundtracks, side projects, and offline rituals that keep my creative gears turning.
-                </p>
-            </div>
-
-            <!-- Spotify Coding Soundtrack & Live Embed -->
-            <div class="myself-card spotify-card">
+            <!-- DISTINCT PERSONAL TEASER CARD: Clean bridge to the Myself page -->
+            <div class="myself-card personal-teaser-card">
                 <div class="card-label-row">
                     <div class="flex items-center gap-2">
-                        <span class="spotify-icon-green">🎧</span>
-                        <span class="card-label">Coding Soundtrack · On Repeat</span>
+                        <span>✨</span>
+                        <span class="card-label">Beyond The Code · Myself</span>
                     </div>
-                    <div class="equalizer-bars" title="Now Vibing">
-                        <span class="equalizer-bar"></span>
-                        <span class="equalizer-bar"></span>
-                        <span class="equalizer-bar"></span>
-                        <span class="equalizer-bar"></span>
-                        <span class="equalizer-bar"></span>
-                    </div>
+                    <span class="badge-mini mono">the human side</span>
                 </div>
 
-                <p class="text-xs text-muted mb-3">
-                    Curated tunes fueling deep focus, concurrency tracing, and late-night architecture sessions:
-                </p>
+                <div class="personal-teaser-content">
+                    <p class="text-xs text-secondary leading-relaxed mb-3">
+                        Engineering distributed systems is my professional craft, but great software is built by real humans with curiosity, rhythm, and passion.
+                    </p>
 
-                <!-- Embedded Compact Spotify Player -->
-                <div class="spotify-embed-container mb-3">
-                    <iframe class="spotify-embed-iframe"
-                        src="{{ spotify.embed_url }}"
-                        width="100%" 
-                        height="152" 
-                        frameBorder="0" 
-                        allowfullscreen="" 
-                        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
-                        loading="lazy">
-                    </iframe>
-                </div>
-
-                <div class="spotify-footer-row flex items-center justify-between">
-                    <div class="vibe-tags flex flex-wrap gap-1">
-                        {% for tag in spotify.vibe_tags %}
-                        <span class="vibe-pill">{{ tag }}</span>
-                        {% endfor %}
-                    </div>
-                    <a href="{{ spotify.playlist_url }}" target="_blank" rel="noopener noreferrer" class="spotify-open-btn mono text-xs">
-                        Open Spotify ↗
-                    </a>
-                </div>
-            </div>
-
-            <!-- Personal Projects & Side Quests -->
-            <div class="myself-card side-projects-card">
-                <div class="card-label-row">
-                    <div class="flex items-center gap-2">
-                        <span>🚀</span>
-                        <span class="card-label">Personal Projects & Side Quests</span>
-                    </div>
-                    <span class="text-xs text-accent mono">builder & hacker</span>
-                </div>
-
-                <p class="text-xs text-muted mb-3">
-                    Fun developer ergonomics, CLI utilities, and sandbox experiments built for pure joy:
-                </p>
-
-                <div class="side-projects-list space-y-3">
-                    {% for sp in side_projects %}
-                    <a href="{{ sp.github }}" target="_blank" rel="noopener" class="side-project-item">
-                        <div class="side-project-icon">{{ sp.icon }}</div>
-                        <div class="side-project-info flex-1">
-                            <div class="side-project-title-row flex items-center justify-between">
-                                <span class="side-project-name font-semibold text-sm">{{ sp.name }}</span>
-                                <span class="badge-mini mono">{{ sp.badge }}</span>
+                    <div class="teaser-pills-grid mb-4">
+                        <div class="teaser-pill">
+                            <span class="text-base">🎧</span>
+                            <div>
+                                <div class="font-semibold text-xs text-primary">Coding Soundtrack</div>
+                                <div class="text-xs text-muted">Lo-Fi & Synthwave on repeat</div>
                             </div>
-                            <p class="side-project-desc text-xs text-muted mt-1">{{ sp.summary }}</p>
                         </div>
+                        <div class="teaser-pill">
+                            <span class="text-base">🚀</span>
+                            <div>
+                                <div class="font-semibold text-xs text-primary">Hacker Side Quests</div>
+                                <div class="text-xs text-muted">Ghost Mail & Dotfiles</div>
+                            </div>
+                        </div>
+                        <div class="teaser-pill">
+                            <span class="text-base">☕</span>
+                            <div>
+                                <div class="font-semibold text-xs text-primary">Offline Rituals</div>
+                                <div class="text-xs text-muted">Pour-over & custom keebs</div>
+                            </div>
+                        </div>
+                        <div class="teaser-pill">
+                            <span class="text-base">⚡</span>
+                            <div>
+                                <div class="font-semibold text-xs text-primary">Developer Ergonomics</div>
+                                <div class="text-xs text-muted">Neovim, tmux & Linux</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="/myself" hx-get="/myself" hx-target="#main-content" hx-push-url="true" class="btn btn-playful w-full text-center">
+                        Explore Full Personal World & Spotify Player ✨ →
                     </a>
-                    {% endfor %}
                 </div>
-            </div>
-
-            <!-- Beyond The Terminal / Offline Life -->
-            <div class="myself-card offline-life-card">
-                <div class="card-label-row">
-                    <div class="flex items-center gap-2">
-                        <span>☕</span>
-                        <span class="card-label">Beyond The Terminal</span>
-                    </div>
-                    <span class="text-xs text-accent mono">offline life</span>
-                </div>
-
-                <div class="offline-grid">
-                    {% for interest in personal_interests %}
-                    <div class="offline-cell">
-                        <div class="offline-icon-row flex items-center gap-2 mb-1">
-                            <span class="offline-emoji">{{ interest.icon }}</span>
-                            <span class="offline-title font-semibold text-sm">{{ interest.title }}</span>
-                            <span class="offline-tag mono text-xs text-muted ml-auto">[{{ interest.tag }}]</span>
-                        </div>
-                        <p class="offline-desc text-xs text-secondary">{{ interest.description }}</p>
-                    </div>
-                    {% endfor %}
-                </div>
-            </div>
-
-            <!-- Link to Full Myself Page -->
-            <div class="text-center pt-2">
-                <a href="/myself" hx-get="/myself" hx-target="#main-content" hx-push-url="true" class="btn btn-outline btn-sm w-full">
-                    View Full Personal Playground & Stories →
-                </a>
             </div>
 
         </div>

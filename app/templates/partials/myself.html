@@ -1,6 +1,6 @@
 <div class="page-container space-y-8">
 
-    <!-- Playful Personal Header Banner -->
+    <!-- 1. Playful Personal Hero Header -->
     <section class="intro-card myself-hero">
         <div class="intro-grid">
             <div class="intro-avatar-col">
@@ -29,26 +29,26 @@
                     <span class="role-badge myself-badge">✨ Behind The Code</span>
                     <div class="status-indicator">
                         <span class="beacon-dot"></span>
-                        <span>Music · Side Quests · Offline Life</span>
+                        <span>Soundtracks · Side Quests · Offline Life</span>
                     </div>
                 </div>
 
                 <h1 class="intro-name">Utkarsh Bhardwaj — Myself</h1>
-                <p class="intro-subtitle">Music Lover · Mechanical Keyboard Tinkerer · Maker of Quirky Tools</p>
+                <p class="intro-subtitle">Music Curation · Mechanical Keyboards · Maker Experiments</p>
 
                 <div class="intro-bio">
                     <p>
-                        Welcome to my personal corner of the web! 👋 While my days are dedicated to backend distributed systems, streaming architectures, and graduate research preparation, this is where my curiosity runs free.
+                        Welcome to my personal studio space! 👋 While my professional days are dedicated to backend distributed workflows and preparing for graduate research in Computer Science, this is where my curiosity and creativity take center stage.
                     </p>
                     <p class="mt-2 text-secondary">
-                        Here you'll find the coding soundtracks that fuel my late-night flow state, open-source developer tools I built on weekends, and the analog offline rituals that keep me grounded.
+                        Here you'll find the coding soundtracks that power my late-night flow state, open-source side quests built for the joy of hacking, and the analog rituals that keep me grounded away from the screen.
                     </p>
                 </div>
 
                 <div class="intro-actions">
                     <a href="/" hx-get="/" hx-target="#main-content" hx-push-url="true"
                         class="btn btn-secondary">
-                        ← Back to System Rigor & About
+                        ← Back to Engineering Overview & Rigor
                     </a>
                     <a href="{{ spotify.playlist_url }}" target="_blank" rel="noopener noreferrer"
                         class="btn btn-playful">
@@ -59,18 +59,18 @@
         </div>
     </section>
 
-    <!-- Two-Column Playground -->
+    <!-- 2. Two-Column Dedicated Creative Studio -->
     <div class="two-col-layout">
 
-        <!-- LEFT COLUMN: Music & Flow State -->
-        <div class="col-myself-left space-y-6">
+        <!-- LEFT COLUMN: Music Lounge & Flow State -->
+        <div class="space-y-6">
 
             <div class="column-header">
                 <span class="column-tag-badge myself-tag">🎧 Coding Soundtrack</span>
                 <h2 class="column-title">Music & Flow State</h2>
             </div>
 
-            <!-- Spotify Featured Card -->
+            <!-- Spotify Featured Live Player Card -->
             <div class="myself-card spotify-card">
                 <div class="card-label-row">
                     <div class="flex items-center gap-2">
@@ -87,9 +87,10 @@
                 </div>
 
                 <p class="text-xs text-secondary mb-3 leading-relaxed">
-                    Music is an indispensable part of my engineering process. From synthwave to chillhop, these tracks keep me locked in when tracing race conditions or reading systems papers.
+                    Music is an essential companion to my engineering process. From dark synthwave to zero-lyric ambient chillhop, these tracks keep me focused during deep architecture tracing and paper reading:
                 </p>
 
+                <!-- Embedded Live Spotify Player -->
                 <div class="spotify-embed-container mb-3">
                     <iframe class="spotify-embed-iframe"
                         src="{{ spotify.embed_url }}"
@@ -109,35 +110,63 @@
                         {% endfor %}
                     </div>
                     <a href="{{ spotify.playlist_url }}" target="_blank" rel="noopener noreferrer" class="spotify-open-btn mono text-xs">
-                        Open in App ↗
+                        Open Spotify ↗
                     </a>
                 </div>
             </div>
 
-            <!-- Musical Preferences Card -->
+            <!-- Musical Modes & Cognitive Workflow Card -->
             <div class="myself-card">
                 <div class="card-label-row">
-                    <span class="card-label">🎵 What Fuels My Flow</span>
+                    <span class="card-label">🎵 Sonic Modes for Cognitive Work</span>
                 </div>
                 <div class="space-y-3">
                     <div class="p-3 rounded-lg bg-subtle border border-subtle">
-                        <div class="font-semibold text-sm text-primary">Late-Night Architecture & Tracing</div>
-                        <p class="text-xs text-muted mt-1">Downtempo, Lo-Fi beats, and ambient electronic with zero lyrics to maintain pure cognitive focus.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="font-semibold text-sm text-primary">Late-Night Architecture & Tracing</span>
+                            <span class="badge-mini mono">Zero Lyrics</span>
+                        </div>
+                        <p class="text-xs text-muted mt-1 leading-relaxed">
+                            Minimalist Lo-Fi beats, ambient drone, and warm synthesizer layers. Zero vocal interference to maintain pure mental concentration when chasing concurrency race conditions.
+                        </p>
                     </div>
                     <div class="p-3 rounded-lg bg-subtle border border-subtle">
-                        <div class="font-semibold text-sm text-primary">High-Energy Sprinting</div>
-                        <p class="text-xs text-muted mt-1">Synthwave, retrowave, and upbeat electronic when building prototypes or shipping features against a clock.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="font-semibold text-sm text-primary">High-Energy Sprinting</span>
+                            <span class="badge-mini mono">120+ BPM</span>
+                        </div>
+                        <p class="text-xs text-muted mt-1 leading-relaxed">
+                            Fast-paced synthwave, darkwave, and retro cyberpunk rhythms when shipping prototypes, writing tests against the clock, or crushing infrastructure migrations.
+                        </p>
                     </div>
+                </div>
+            </div>
+
+            <!-- Developer Trivia & Quick Facts -->
+            <div class="myself-card">
+                <div class="card-label-row">
+                    <span class="card-label">⚡ Quick Facts & Daily Drivers</span>
+                </div>
+                <div class="space-y-2">
+                    {% for fact in quick_facts %}
+                    <div class="flex items-center justify-between p-2 rounded bg-subtle text-xs">
+                        <div class="flex items-center gap-2">
+                            <span>{{ fact.icon }}</span>
+                            <span class="text-muted font-medium">{{ fact.label }}</span>
+                        </div>
+                        <span class="text-primary font-semibold text-right">{{ fact.value }}</span>
+                    </div>
+                    {% endfor %}
                 </div>
             </div>
 
         </div>
 
-        <!-- RIGHT COLUMN: Side Quests & Offline Life -->
-        <div class="col-myself-right space-y-6">
+        <!-- RIGHT COLUMN: Side Quests & Offline Analog Life -->
+        <div class="space-y-6">
 
             <div class="column-header">
-                <span class="column-tag-badge myself-tag">🚀 SIDE QUESTS & PASSIONS</span>
+                <span class="column-tag-badge myself-tag">🚀 MAKER SIDE QUESTS</span>
                 <h2 class="column-title">Projects Built For Joy</h2>
             </div>
 
@@ -146,13 +175,13 @@
                 <div class="card-label-row">
                     <div class="flex items-center gap-2">
                         <span>🚀</span>
-                        <span class="card-label">Hacker Experiments</span>
+                        <span class="card-label">Personal Hacker Experiments</span>
                     </div>
                     <span class="text-xs text-accent mono">open source</span>
                 </div>
 
                 <p class="text-xs text-muted mb-3">
-                    Tools and experiments built purely because they were fun to build:
+                    Outside enterprise platforms, I love building small, focused utilities that solve personal developer ergonomics:
                 </p>
 
                 <div class="side-projects-list space-y-3">
@@ -165,6 +194,11 @@
                                 <span class="badge-mini mono">{{ sp.badge }}</span>
                             </div>
                             <p class="side-project-desc text-xs text-muted mt-1">{{ sp.summary }}</p>
+                            <div class="flex items-center gap-1 mt-2">
+                                {% for t in sp.tech %}
+                                <span class="vibe-pill" style="font-size: 0.65rem; padding: 0.1rem 0.35rem;">{{ t }}</span>
+                                {% endfor %}
+                            </div>
                         </div>
                     </a>
                     {% endfor %}
@@ -178,8 +212,12 @@
                         <span>☕</span>
                         <span class="card-label">The Offline Rituals</span>
                     </div>
-                    <span class="text-xs text-accent mono">balance</span>
+                    <span class="text-xs text-accent mono">balance & health</span>
                 </div>
+
+                <p class="text-xs text-muted mb-3">
+                    Analog passions that disconnect me from terminals and recharge cognitive stamina:
+                </p>
 
                 <div class="offline-grid">
                     {% for interest in personal_interests %}

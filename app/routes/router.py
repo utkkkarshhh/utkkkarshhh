@@ -15,6 +15,7 @@ from app.core.data import (
     SPOTIFY_CONFIG,
     PERSONAL_INTERESTS,
     SIDE_PROJECTS,
+    QUICK_FACTS,
 )
 
 router = APIRouter()
@@ -72,6 +73,7 @@ async def page_myself(request: Request):
         "spotify": SPOTIFY_CONFIG,
         "personal_interests": PERSONAL_INTERESTS,
         "side_projects": SIDE_PROJECTS,
+        "quick_facts": QUICK_FACTS,
     }
     if is_partial_request(request):
         return templates.TemplateResponse(request=request, name="partials/myself.html", context=context)

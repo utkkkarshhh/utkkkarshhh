@@ -320,3 +320,12 @@ SIDE_PROJECTS: List[Dict[str, Any]] = [
         "github": "https://github.com/utkkkarshhh"
     }
 ]
+
+QUICK_FACTS: List[Dict[str, str]] = [
+    {"label": "Editor of Choice", "value": "Neovim (Lua, lazy.nvim, tmux)", "icon": "⚡"},
+    {"label": "Terminal Cockpit", "value": "Alacritty + Zsh + Starship prompt", "icon": "💻"},
+    {"label": "Keyboard Hardware", "value": "Custom 65% with lubed tactile switches", "icon": "⌨️"},
+    {"label": "Favorite Distributed Concept", "value": "CAP Theorem & Raft State Machine Replication", "icon": "📐"},
+    {"label": "Flow Fuel", "value": "Fresh medium-roast Pour-Over & evening Masala Chai", "icon": "☕"},
+    {"label": "Current Research Fascination", "value": "BFT consensus protocols under partial network partitions", "icon": "🔬"}
+]
