@@ -15,8 +15,8 @@
     <!-- HTMX 2.0.4 -->
     <script src="https://unpkg.com/htmx.org@2.0.4"></script>
     
-    <!-- Neutral Zinc / Minimalist Editorial Style -->
-    <link rel="stylesheet" href="/static/css/style.css">
+    <!-- Modern Systems Portfolio Style -->
+    <link rel="stylesheet" href="/static/css/style.css?v=2.2">
 </head>
 <body>
 
@@ -109,7 +109,7 @@
     <div id="modal-container"></div>
 
     <!-- Accessibility & Keyboard Shortcuts Modal -->
-    <div id="a11y-modal" class="modal-backdrop a11y-modal-backdrop" style="display: none;" onclick="handleA11yBackdropClick(event)">
+    <div id="a11y-modal" class="a11y-modal-backdrop" onclick="handleA11yBackdropClick(event)">
         <div class="modal-window a11y-modal-window" role="dialog" aria-labelledby="a11y-modal-title" aria-modal="true">
             <div class="modal-header">
                 <div class="flex items-center gap-2">
@@ -253,7 +253,7 @@
         </div>
     </footer>
 
-    <!-- Client Script -->
-    <script src="/static/js/main.js"></script>
+    <!-- Client Script with cache-busting -->
+    <script src="/static/js/main.js?v=2.2"></script>
 </body>
 </html>

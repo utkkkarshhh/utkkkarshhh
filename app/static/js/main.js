@@ -9,20 +9,38 @@
  * - Client-side interactive project filtering
  */
 
+// Safe localStorage wrapper to prevent private-mode or strict-context crashes
+function safeGetItem(key, fallback) {
+    try {
+        const val = localStorage.getItem(key);
+        return val !== null ? val : fallback;
+    } catch (e) {
+        return fallback;
+    }
+}
+
+function safeSetItem(key, value) {
+    try {
+        localStorage.setItem(key, value);
+    } catch (e) {
+        // Storage restricted or quota exceeded
+    }
+}
+
 // ============================================================================
 // Theme Management
 // ============================================================================
 function initTheme() {
-    const saved = localStorage.getItem('theme') || 'light';
+    const saved = safeGetItem('theme', 'dark');
     document.documentElement.setAttribute('data-theme', saved);
     updateThemeIcon(saved);
 }
 
 function toggleTheme() {
-    const current = document.documentElement.getAttribute('data-theme') || 'light';
+    const current = document.documentElement.getAttribute('data-theme') || 'dark';
     const nextTheme = current === 'dark' ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', nextTheme);
-    localStorage.setItem('theme', nextTheme);
+    safeSetItem('theme', nextTheme);
     updateThemeIcon(nextTheme);
 }
 
@@ -31,16 +49,20 @@ function updateThemeIcon(theme) {
     if (icon) {
         icon.textContent = theme === 'dark' ? '◐' : '◑';
     }
+    const label = document.getElementById('theme-toggle-text');
+    if (label) {
+        label.textContent = theme;
+    }
 }
 
 // ============================================================================
 // Accessibility Preferences Management
 // ============================================================================
 function initA11y() {
-    const textScale = localStorage.getItem('a11y_text') || 'normal';
-    const contrast = localStorage.getItem('a11y_contrast') || 'normal';
-    const motion = localStorage.getItem('a11y_motion') || 'normal';
-    const font = localStorage.getItem('a11y_font') || 'normal';
+    const textScale = safeGetItem('a11y_text', 'normal');
+    const contrast = safeGetItem('a11y_contrast', 'normal');
+    const motion = safeGetItem('a11y_motion', 'normal');
+    const font = safeGetItem('a11y_font', 'normal');
 
     applyA11yText(textScale);
     applyA11yContrast(contrast);
@@ -54,7 +76,7 @@ function applyA11yText(size) {
     } else {
         document.documentElement.setAttribute('data-a11y-text', size);
     }
-    localStorage.setItem('a11y_text', size);
+    safeSetItem('a11y_text', size);
 
     const segBtns = document.querySelectorAll('#a11y-text-segmented .seg-btn');
     segBtns.forEach(btn => {
@@ -76,7 +98,7 @@ function applyA11yContrast(mode) {
     } else {
         document.documentElement.removeAttribute('data-a11y-contrast');
     }
-    localStorage.setItem('a11y_contrast', mode);
+    safeSetItem('a11y_contrast', mode);
 
     const btn = document.getElementById('a11y-contrast-btn');
     const label = document.getElementById('contrast-status-text');
@@ -92,7 +114,7 @@ function applyA11yContrast(mode) {
 }
 
 function toggleA11yContrast() {
-    const current = localStorage.getItem('a11y_contrast') || 'normal';
+    const current = safeGetItem('a11y_contrast', 'normal');
     const next = current === 'high' ? 'normal' : 'high';
     applyA11yContrast(next);
 }
@@ -103,7 +125,7 @@ function applyA11yMotion(mode) {
     } else {
         document.documentElement.removeAttribute('data-a11y-motion');
     }
-    localStorage.setItem('a11y_motion', mode);
+    safeSetItem('a11y_motion', mode);
 
     const btn = document.getElementById('a11y-motion-btn');
     const label = document.getElementById('motion-status-text');
@@ -119,7 +141,7 @@ function applyA11yMotion(mode) {
 }
 
 function toggleA11yMotion() {
-    const current = localStorage.getItem('a11y_motion') || 'normal';
+    const current = safeGetItem('a11y_motion', 'normal');
     const next = current === 'reduced' ? 'normal' : 'reduced';
     applyA11yMotion(next);
 }
@@ -130,7 +152,7 @@ function applyA11yFont(mode) {
     } else {
         document.documentElement.removeAttribute('data-a11y-font');
     }
-    localStorage.setItem('a11y_font', mode);
+    safeSetItem('a11y_font', mode);
 
     const btn = document.getElementById('a11y-font-btn');
     const label = document.getElementById('font-status-text');
@@ -146,7 +168,7 @@ function applyA11yFont(mode) {
 }
 
 function toggleA11yFont() {
-    const current = localStorage.getItem('a11y_font') || 'normal';
+    const current = safeGetItem('a11y_font', 'normal');
     const next = current === 'readable' ? 'normal' : 'readable';
     applyA11yFont(next);
 }
@@ -158,11 +180,12 @@ function resetA11y() {
     applyA11yFont('normal');
 }
 
+// Modal Toggle Functions
 function openA11yModal() {
     const modal = document.getElementById('a11y-modal');
     if (modal) {
+        modal.classList.add('open');
         modal.style.display = 'flex';
-        // Refresh toggle button states
         initA11y();
     }
 }
@@ -170,12 +193,13 @@ function openA11yModal() {
 function closeA11yModal() {
     const modal = document.getElementById('a11y-modal');
     if (modal) {
+        modal.classList.remove('open');
         modal.style.display = 'none';
     }
 }
 
 function handleA11yBackdropClick(event) {
-    if (event.target.id === 'a11y-modal') {
+    if (event.target === event.currentTarget || event.target.id === 'a11y-modal') {
         closeA11yModal();
     }
 }
@@ -201,7 +225,6 @@ function handleBackdropClick(event) {
 // ============================================================================
 function syncActiveNav(targetPath) {
     let raw = targetPath || window.location.pathname;
-    // Strip query string and hash
     let path = raw.split('?')[0].split('#')[0];
     if (path.length > 1 && path.endsWith('/')) {
         path = path.slice(0, -1);
@@ -254,9 +277,8 @@ function syncActiveNav(targetPath) {
 document.addEventListener('click', (e) => {
     const el = e.target.closest('a[hx-get], button[hx-get], a[href]');
     if (el) {
-        // If it targets a modal or isn't a page navigation, don't change navbar
         const target = el.getAttribute('hx-target');
-        if (target && target !== '#main-content') {
+        if (target && target !== '#main-content' && target !== 'main-content') {
             return;
         }
         const dest = el.getAttribute('hx-get') || el.getAttribute('href');
@@ -271,20 +293,46 @@ document.addEventListener('click', (e) => {
 // ============================================================================
 function copyEmail(email) {
     if (!email) email = 'utkarshbhardwajmail@gmail.com';
-    navigator.clipboard.writeText(email).then(() => {
-        const btn = document.getElementById('copy-email-btn');
-        if (btn) {
-            const originalHTML = btn.innerHTML;
-            btn.innerHTML = '<span>Copied! ✓</span>';
-            btn.classList.add('btn-copied');
-            setTimeout(() => {
-                btn.innerHTML = originalHTML;
-                btn.classList.remove('btn-copied');
-            }, 2000);
-        }
-    }).catch(err => {
-        console.error('Failed to copy email:', err);
-    });
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(email).then(() => {
+            showCopiedFeedback();
+        }).catch(() => {
+            fallbackCopyText(email);
+        });
+    } else {
+        fallbackCopyText(email);
+    }
+}
+
+function showCopiedFeedback() {
+    const btn = document.getElementById('copy-email-btn');
+    if (btn) {
+        const originalHTML = btn.innerHTML;
+        btn.innerHTML = '<span>Copied! ✓</span>';
+        btn.classList.add('btn-copied');
+        setTimeout(() => {
+            btn.innerHTML = originalHTML;
+            btn.classList.remove('btn-copied');
+        }, 2000);
+    }
+}
+
+function fallbackCopyText(text) {
+    const textArea = document.createElement('textarea');
+    textArea.value = text;
+    textArea.style.position = 'fixed';
+    textArea.style.left = '-999999px';
+    textArea.style.top = '-999999px';
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+    try {
+        document.execCommand('copy');
+        showCopiedFeedback();
+    } catch (err) {
+        console.error('Fallback copy failed', err);
+    }
+    document.body.removeChild(textArea);
 }
 
 // ============================================================================
@@ -317,7 +365,7 @@ function filterProjects(category) {
 // ============================================================================
 document.addEventListener('keydown', (e) => {
     const activeTag = document.activeElement ? document.activeElement.tagName.toLowerCase() : '';
-    if (activeTag === 'input' || activeTag === 'textarea') {
+    if (activeTag === 'input' || activeTag === 'textarea' || activeTag === 'select' || document.activeElement?.isContentEditable) {
         if (e.key === 'Escape') {
             closeModal();
             closeA11yModal();
@@ -325,22 +373,29 @@ document.addEventListener('keydown', (e) => {
         return;
     }
 
-    if (e.key === 'Escape') {
+    // Ignore if holding modifier keys (Cmd, Ctrl, Alt) so browser shortcuts aren't hijacked
+    if (e.metaKey || e.ctrlKey || e.altKey) {
+        return;
+    }
+
+    const key = e.key ? e.key.toLowerCase() : '';
+
+    if (key === 'escape') {
         closeModal();
         closeA11yModal();
         return;
     }
 
-    // Toggle theme with 't' or 'T'
-    if (e.key === 't' || e.key === 'T') {
+    // Toggle theme with 't'
+    if (key === 't') {
         toggleTheme();
         return;
     }
 
-    // Toggle accessibility modal with 'a' or 'A' or '?'
-    if (e.key === 'a' || e.key === 'A' || e.key === '?') {
+    // Toggle accessibility modal with 'a' or '?'
+    if (key === 'a' || key === '?') {
         const modal = document.getElementById('a11y-modal');
-        if (modal && modal.style.display === 'flex') {
+        if (modal && (modal.classList.contains('open') || modal.style.display === 'flex')) {
             closeA11yModal();
         } else {
             openA11yModal();
@@ -349,7 +404,7 @@ document.addEventListener('keydown', (e) => {
     }
 
     // Quick navigation via numeric keys 1-6
-    const keyMap = {
+    const numMap = {
         '1': '/',
         '2': '/experience',
         '3': '/projects',
@@ -358,11 +413,20 @@ document.addEventListener('keydown', (e) => {
         '6': '/contact'
     };
 
-    if (keyMap[e.key]) {
-        const targetUrl = keyMap[e.key];
+    let targetUrl = numMap[e.key];
+    if (!targetUrl && e.code) {
+        if (e.code.startsWith('Digit')) {
+            targetUrl = numMap[e.code.replace('Digit', '')];
+        } else if (e.code.startsWith('Numpad')) {
+            targetUrl = numMap[e.code.replace('Numpad', '')];
+        }
+    }
+
+    if (targetUrl) {
         syncActiveNav(targetUrl);
-        if (typeof htmx !== 'undefined') {
-            htmx.ajax('GET', targetUrl, { target: '#main-content', pushUrl: targetUrl });
+        const mainContentEl = document.getElementById('main-content');
+        if (typeof htmx !== 'undefined' && mainContentEl) {
+            htmx.ajax('GET', targetUrl, { target: mainContentEl, pushUrl: targetUrl });
         } else {
             window.location.href = targetUrl;
         }
@@ -372,11 +436,35 @@ document.addEventListener('keydown', (e) => {
 // ============================================================================
 // Lifecycle Hooks & History Listeners
 // ============================================================================
-document.addEventListener('DOMContentLoaded', () => {
+function initApp() {
     initTheme();
     initA11y();
     syncActiveNav();
-});
+
+    // Attach direct listeners to utility triggers for robust execution
+    const a11yBtn = document.getElementById('a11y-toggle-btn');
+    if (a11yBtn) {
+        a11yBtn.onclick = function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            openA11yModal();
+        };
+    }
+
+    const themeBtn = document.getElementById('theme-toggle-btn');
+    if (themeBtn) {
+        themeBtn.onclick = function(e) {
+            e.preventDefault();
+            toggleTheme();
+        };
+    }
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initApp);
+} else {
+    initApp();
+}
 
 document.addEventListener('htmx:afterSwap', (e) => {
     if (e.detail?.target?.id === 'main-content') {
@@ -398,3 +486,21 @@ document.addEventListener('htmx:pushedIntoHistory', (e) => {
 window.addEventListener('popstate', () => {
     syncActiveNav(window.location.pathname);
 });
+
+// Global Window Exports
+window.initTheme = initTheme;
+window.toggleTheme = toggleTheme;
+window.initA11y = initA11y;
+window.openA11yModal = openA11yModal;
+window.closeA11yModal = closeA11yModal;
+window.setA11yText = setA11yText;
+window.toggleA11yContrast = toggleA11yContrast;
+window.toggleA11yMotion = toggleA11yMotion;
+window.toggleA11yFont = toggleA11yFont;
+window.resetA11y = resetA11y;
+window.handleA11yBackdropClick = handleA11yBackdropClick;
+window.closeModal = closeModal;
+window.handleBackdropClick = handleBackdropClick;
+window.copyEmail = copyEmail;
+window.filterProjects = filterProjects;
+window.syncActiveNav = syncActiveNav;

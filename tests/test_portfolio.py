@@ -19,10 +19,18 @@ class TestPortfolioApplication:
         assert "Master of Computer Applications" in response.text
 
     def test_home_page_htmx(self, client):
-        response = client.get("/", headers={"HX-Request": "true", "HX-Target": "main-content"})
-        assert response.status_code == 200
-        assert "intro-card" in response.text
-        assert "<!DOCTYPE html>" not in response.text
+        for target in ["main-content", "#main-content"]:
+            response = client.get("/", headers={"HX-Request": "true", "HX-Target": target})
+            assert response.status_code == 200
+            assert "intro-card" in response.text
+            assert "<!DOCTYPE html>" not in response.text
+
+    def test_htmx_partial_routes(self, client):
+        for route in ["/experience", "/projects", "/education", "/skills", "/contact"]:
+            for target in ["main-content", "#main-content"]:
+                res = client.get(route, headers={"HX-Request": "true", "HX-Target": target})
+                assert res.status_code == 200
+                assert "<!DOCTYPE html>" not in res.text
 
     def test_experience_page(self, client):
         res = client.get("/experience")

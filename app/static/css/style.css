@@ -1,7 +1,7 @@
 /* ==========================================================================
    Utkarsh Bhardwaj — Modern Systems Portfolio & Research Dossier
-   Aesthetic: Modern Deep-Tech, Swiss Monospace & Bento Grid Architecture
-   Palette: Neutral Zinc & Titanium Charcoal (Warm Editorial Light / Titanium Obsidian Dark)
+   Aesthetic: Vibrant Deep-Tech & Cyber-Emerald Studio Architecture
+   Palette: Luminous Emerald & Ambient Aurora (Rich Dark Space / Crisp Studio Light)
    UX Highlights: Floating Glassmorphic Nav, Instant Nav Sync, Keyboard Shortcuts [1-6, T, A],
                   System Accessibility Controls, Bento Layout, Impact Metrics, Embedded Docs
    ========================================================================== */
@@ -11,34 +11,38 @@
     --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     --font-mono: 'JetBrains Mono', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace;
 
-    /* Light Theme — Neutral Zinc & Studio White (Warm Editorial, Zero Blue Cast) */
-    --bg-page: #fafafa;           /* Zinc 50 Warm Clean Canvas */
-    --bg-card: #ffffff;           /* Clean Pure White Surface */
-    --bg-card-hover: #f7f7f8;
-    --bg-subtle: #f0f0f2;         /* Zinc 100 */
-    --bg-subtle-hover: #e4e4e7;   /* Zinc 200 */
+    /* Light Theme — Crisp Studio Canvas with Vibrant Emerald & Cyan Accents */
+    --bg-page: #f8fafc;           /* Clean Modern Studio White */
+    --bg-card: #ffffff;           /* Pure White Surface */
+    --bg-card-hover: #f1f5f9;
+    --bg-subtle: #f1f5f9;         /* Slate 100 */
+    --bg-subtle-hover: #e2e8f0;   /* Slate 200 */
     --bg-glass: rgba(255, 255, 255, 0.90);
-    --bg-code: #f0f0f2;
+    --bg-code: #f1f5f9;
 
-    --border-color: #e4e4e7;      /* Zinc 200 Hairline */
-    --border-hover: #a1a1aa;      /* Zinc 400 */
-    --border-focus: #18181b;
+    --border-color: #e2e8f0;      /* Hairline Border */
+    --border-hover: #94a3b8;      /* Slate 400 */
+    --border-focus: #10b981;
 
-    --text-primary: #18181b;       /* Zinc 900 — Deep Crisp Ink */
-    --text-secondary: #3f3f46;     /* Zinc 700 */
-    --text-muted: #71717a;         /* Zinc 500 */
-    --text-dim: #a1a1aa;           /* Zinc 400 */
+    --text-primary: #0f172a;       /* Slate 900 — Deep Crisp Ink */
+    --text-secondary: #334155;     /* Slate 700 */
+    --text-muted: #64748b;         /* Slate 500 */
+    --text-dim: #94a3b8;           /* Slate 400 */
 
-    --accent: #18181b;             /* Pure Zinc 900 High Contrast Accent */
-    --accent-hover: #09090b;       /* Deep Ink */
-    --accent-subtle: #f4f4f5;      /* Zinc 100 */
-    --accent-border: #d4d4d8;      /* Zinc 300 */
-    --accent-glow: rgba(24, 24, 27, 0.08);
+    --accent: #059669;             /* Vibrant Emerald */
+    --accent-hover: #047857;       /* Deep Emerald */
+    --accent-subtle: #ecfdf5;      /* Emerald 50 */
+    --accent-border: #a7f3d0;      /* Emerald 200 */
+    --accent-glow: rgba(5, 150, 105, 0.18);
+
+    --accent-cyan: #0284c7;        /* Electric Sky/Cyan */
+    --accent-amber: #d97706;       /* Warm Amber */
+    --accent-violet: #7c3aed;      /* Modern Violet */
 
     --success-dot: #10b981;        /* Emerald pulse for availability */
     --success-subtle: #ecfdf5;
 
-    --grid-dot: rgba(24, 24, 27, 0.04);
+    --grid-dot: rgba(15, 23, 42, 0.05);
 
     --radius-xs: 3px;
     --radius-sm: 6px;
@@ -46,43 +50,47 @@
     --radius-lg: 14px;
     --radius-full: 9999px;
 
-    --shadow-subtle: 0 1px 3px rgba(24, 24, 27, 0.04);
-    --shadow-card: 0 2px 8px -2px rgba(24, 24, 27, 0.06), 0 1px 3px rgba(24, 24, 27, 0.04);
-    --shadow-lift: 0 10px 25px -5px rgba(24, 24, 27, 0.08), 0 4px 6px -2px rgba(24, 24, 27, 0.04);
-    --shadow-modal: 0 24px 48px -12px rgba(24, 24, 27, 0.22);
+    --shadow-subtle: 0 1px 3px rgba(15, 23, 42, 0.05);
+    --shadow-card: 0 2px 8px -2px rgba(15, 23, 42, 0.08), 0 1px 3px rgba(15, 23, 42, 0.04);
+    --shadow-lift: 0 10px 25px -5px rgba(15, 23, 42, 0.1), 0 4px 6px -2px rgba(15, 23, 42, 0.05);
+    --shadow-modal: 0 24px 48px -12px rgba(15, 23, 42, 0.25);
 
     --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 [data-theme="dark"] {
-    /* Dark Theme — Neutral Zinc & Titanium Charcoal (Zero Blue/Cobalt Cast) */
-    --bg-page: #09090b;           /* Zinc 950 — True Rich Charcoal */
-    --bg-card: #121215;           /* Neutral Titanium Surface */
-    --bg-card-hover: #18181c;
-    --bg-subtle: #19191e;         /* Zinc 900 / Titanium Subtle */
-    --bg-subtle-hover: #222228;
-    --bg-glass: rgba(18, 18, 21, 0.88);
-    --bg-code: #16161a;
+    /* Dark Theme — Luminous Deep Space & Electric Emerald (Lively, Multi-Dimensional) */
+    --bg-page: #0b0f17;           /* Deep Obsidian Space (Not Dead Flat Pitch Black) */
+    --bg-card: #121824;           /* Rich Atmospheric Card Surface */
+    --bg-card-hover: #182232;
+    --bg-subtle: #162030;         /* Subtle Surface */
+    --bg-subtle-hover: #1f2d42;
+    --bg-glass: rgba(18, 24, 36, 0.88);
+    --bg-code: #162030;
 
-    --border-color: #27272a;      /* Zinc 800 Hairline */
-    --border-hover: #3f3f46;      /* Zinc 700 */
-    --border-focus: #f4f4f5;
+    --border-color: #1f2c3f;      /* Refined Deep Hairline */
+    --border-hover: #334664;      /* Interactive Border */
+    --border-focus: #34d399;
 
-    --text-primary: #f4f4f5;       /* Zinc 50 Crisp Titanium */
-    --text-secondary: #c4c4cc;     /* Zinc 300 Refined Silver */
-    --text-muted: #828290;         /* Zinc 400 */
-    --text-dim: #52525b;           /* Zinc 600 */
+    --text-primary: #f8fafc;       /* Crisp Titanium White */
+    --text-secondary: #cbd5e1;     /* Refined Silver */
+    --text-muted: #8a99ad;         /* Muted Slate */
+    --text-dim: #54647c;           /* Dim Slate */
 
-    --accent: #f4f4f5;             /* Titanium Crisp White Accent */
-    --accent-hover: #ffffff;
-    --accent-subtle: rgba(244, 244, 245, 0.08);
-    --accent-border: rgba(244, 244, 245, 0.2);
-    --accent-glow: rgba(244, 244, 245, 0.1);
+    --accent: #10b981;             /* Electric Emerald / Neon Mint */
+    --accent-hover: #34d399;       /* Luminous Mint */
+    --accent-subtle: rgba(16, 185, 129, 0.12);
+    --accent-border: rgba(16, 185, 129, 0.35);
+    --accent-glow: rgba(16, 185, 129, 0.25);
+
+    --accent-cyan: #06b6d4;        /* Electric Cyan */
+    --accent-amber: #f59e0b;       /* Warm Amber */
+    --accent-violet: #8b5cf6;      /* Electric Violet */
 
     --success-dot: #10b981;
-    --success-subtle: rgba(16, 185, 129, 0.12);
+    --success-subtle: rgba(16, 185, 129, 0.14);
 
-    --grid-dot: rgba(244, 244, 245, 0.035);
+    --grid-dot: rgba(248, 250, 252, 0.04);
 
     --shadow-subtle: 0 1px 3px rgba(0, 0, 0, 0.5);
     --shadow-card: 0 4px 12px rgba(0, 0, 0, 0.55);
@@ -90,7 +98,7 @@
     --shadow-modal: 0 28px 60px rgba(0, 0, 0, 0.85);
 }
 
-/* Base Resets & Blueprint Canvas */
+/* Base Resets & Luminous Living Canvas */
 *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
@@ -104,8 +112,12 @@ html {
 
 body {
     background-color: var(--bg-page);
-    background-image: radial-gradient(var(--grid-dot) 1px, transparent 1px);
-    background-size: 24px 24px;
+    background-image: 
+        radial-gradient(ellipse 80% 50% at 50% -15%, rgba(16, 185, 129, 0.14), transparent 70%),
+        radial-gradient(circle 500px at 90% 15%, rgba(6, 182, 212, 0.08), transparent 60%),
+        radial-gradient(circle 450px at 10% 40%, rgba(245, 158, 11, 0.04), transparent 50%),
+        radial-gradient(var(--grid-dot) 1px, transparent 1px);
+    background-size: 100% 100%, 100% 100%, 100% 100%, 24px 24px;
     background-attachment: fixed;
     color: var(--text-primary);
     font-family: var(--font-sans);
@@ -237,7 +249,7 @@ a {
     width: 24px;
     height: 24px;
     border-radius: var(--radius-xs);
-    background-color: var(--accent);
+    background: linear-gradient(135deg, #10b981, #06b6d4);
     color: #ffffff;
     display: inline-flex;
     align-items: center;
@@ -245,6 +257,7 @@ a {
     font-family: var(--font-mono);
     font-weight: 700;
     font-size: 0.75rem;
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.4);
 }
 
 .brand-text-group {
@@ -296,23 +309,22 @@ a {
 }
 
 .nav-item.active {
-    color: var(--text-primary);
     font-weight: 600;
-    background-color: var(--bg-card);
-    border: 1px solid var(--border-color);
     box-shadow: var(--shadow-subtle);
 }
 
 [data-theme="dark"] .nav-item.active {
-    background-color: #27272a;
-    border-color: #3f3f46;
-    color: #ffffff;
+    background-color: rgba(16, 185, 129, 0.14);
+    border: 1px solid rgba(16, 185, 129, 0.4);
+    color: #34d399;
+    box-shadow: 0 0 14px rgba(16, 185, 129, 0.2);
 }
 
 [data-theme="light"] .nav-item.active {
-    background-color: #ffffff;
-    border-color: #d4d4d8;
-    color: #18181b;
+    background-color: #ecfdf5;
+    border: 1px solid #a7f3d0;
+    color: #047857;
+    box-shadow: 0 1px 4px rgba(5, 150, 105, 0.15);
 }
 
 .nav-kbd {
@@ -325,8 +337,8 @@ a {
 
 .nav-item.active .nav-kbd {
     background-color: var(--accent-subtle);
-    color: var(--text-primary);
-    opacity: 0.85;
+    color: var(--accent);
+    opacity: 0.95;
 }
 
 /* ==========================================================================
@@ -483,17 +495,19 @@ a {
 }
 
 .btn-primary {
-    background-color: var(--text-primary);
-    color: var(--bg-page);
-    border-color: var(--text-primary);
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: #ffffff !important;
+    border: 1px solid #10b981;
+    box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
+    font-weight: 600;
 }
 
 .btn-primary:hover {
-    background-color: var(--accent-hover);
-    color: var(--bg-page);
-    border-color: var(--accent-hover);
-    box-shadow: 0 4px 14px var(--accent-glow);
-    transform: translateY(-1px);
+    background: linear-gradient(135deg, #34d399, #10b981);
+    color: #ffffff !important;
+    border-color: #34d399;
+    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.45);
+    transform: translateY(-2px);
 }
 
 .btn-secondary {
@@ -503,9 +517,11 @@ a {
 }
 
 .btn-secondary:hover {
-    border-color: var(--border-hover);
+    border-color: var(--accent-border);
     background-color: var(--bg-subtle);
+    color: var(--text-primary);
     transform: translateY(-1px);
+    box-shadow: 0 2px 8px var(--accent-glow);
 }
 
 .btn-outline {
@@ -515,9 +531,10 @@ a {
 }
 
 .btn-outline:hover {
-    color: var(--text-primary);
-    border-color: var(--border-hover);
-    background-color: var(--bg-subtle);
+    color: var(--accent);
+    border-color: var(--accent);
+    background-color: var(--accent-subtle);
+    box-shadow: 0 0 10px var(--accent-glow);
     transform: translateY(-1px);
 }
 
@@ -634,9 +651,10 @@ a {
 }
 
 .contact-pill:hover {
-    color: var(--text-primary);
-    border-color: var(--border-hover);
-    background-color: var(--bg-card);
+    color: var(--accent);
+    border-color: var(--accent);
+    background-color: var(--accent-subtle);
+    box-shadow: 0 0 10px var(--accent-glow);
 }
 
 .intro-content-col {
@@ -656,9 +674,9 @@ a {
     display: inline-block;
     font-size: 0.725rem;
     font-family: var(--font-mono);
-    color: var(--text-primary);
-    background-color: var(--bg-subtle);
-    border: 1px solid var(--border-color);
+    color: var(--accent);
+    background-color: var(--accent-subtle);
+    border: 1px solid var(--accent-border);
     padding: 0.2rem 0.55rem;
     border-radius: var(--radius-xs);
     font-weight: 600;
@@ -667,10 +685,12 @@ a {
 .intro-name {
     font-size: 2.25rem;
     font-weight: 800;
-    color: var(--text-primary);
     letter-spacing: -0.035em;
     line-height: 1.15;
     margin-bottom: 0.35rem;
+    background: linear-gradient(135deg, var(--text-primary) 45%, var(--accent) 85%, var(--accent-cyan) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .intro-subtitle {
@@ -722,22 +742,23 @@ a {
     padding: 1.15rem 1rem;
     text-align: left;
     box-shadow: var(--shadow-subtle);
-    transition: all 0.15s ease;
+    transition: all 0.2s ease;
 }
 
 .metric-cell:hover {
     border-color: var(--accent);
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px var(--accent-glow);
+    box-shadow: 0 4px 16px var(--accent-glow);
 }
 
 .metric-number {
-    font-size: 1.75rem;
+    font-size: 1.85rem;
     font-weight: 800;
     font-family: var(--font-mono);
-    color: var(--text-primary);
+    color: var(--accent);
     letter-spacing: -0.03em;
     line-height: 1.1;
+    text-shadow: 0 0 16px var(--accent-glow);
 }
 
 .metric-label {
@@ -1974,6 +1995,11 @@ a {
     justify-content: center;
     padding: 1.25rem;
     animation: fadeIn 0.15s var(--ease-out);
+}
+
+.a11y-modal-backdrop.open,
+#a11y-modal.open {
+    display: flex !important;
 }
 
 .a11y-modal-window {

@@ -22,6 +22,13 @@ def is_htmx(request: Request) -> bool:
     return request.headers.get("HX-Request", "").lower() == "true"
 
 
+def is_partial_request(request: Request) -> bool:
+    if not is_htmx(request):
+        return False
+    target = request.headers.get("HX-Target", "").lstrip("#").strip()
+    return target in ("main-content", "")
+
+
 async def get_form_data(request: Request) -> dict:
     body = await request.body()
     decoded = body.decode("utf-8", errors="replace")
@@ -46,7 +53,7 @@ async def page_about(request: Request):
         "skills": SKILLS,
         "research_interests": RESEARCH_INTERESTS,
     }
-    if is_htmx(request) and request.headers.get("HX-Target") == "main-content":
+    if is_partial_request(request):
         return templates.TemplateResponse(request=request, name="partials/overview.html", context=context)
     return templates.TemplateResponse(request=request, name="index.html", context=context)
 
@@ -58,7 +65,7 @@ async def page_experience(request: Request):
         "active_tab": "experience",
         "experience": EXPERIENCE,
     }
-    if is_htmx(request) and request.headers.get("HX-Target") == "main-content":
+    if is_partial_request(request):
         return templates.TemplateResponse(request=request, name="partials/experience.html", context=context)
     return templates.TemplateResponse(request=request, name="index.html", context=context)
 
@@ -70,7 +77,7 @@ async def page_projects(request: Request):
         "active_tab": "projects",
         "projects": PROJECTS,
     }
-    if is_htmx(request) and request.headers.get("HX-Target") == "main-content":
+    if is_partial_request(request):
         return templates.TemplateResponse(request=request, name="partials/projects.html", context=context)
     return templates.TemplateResponse(request=request, name="index.html", context=context)
 
@@ -110,7 +117,7 @@ async def page_education(request: Request):
         "education": EDUCATION,
         "research_interests": RESEARCH_INTERESTS,
     }
-    if is_htmx(request) and request.headers.get("HX-Target") == "main-content":
+    if is_partial_request(request):
         return templates.TemplateResponse(request=request, name="partials/education.html", context=context)
     return templates.TemplateResponse(request=request, name="index.html", context=context)
 
@@ -122,7 +129,7 @@ async def page_skills(request: Request):
         "active_tab": "skills",
         "skills": SKILLS,
     }
-    if is_htmx(request) and request.headers.get("HX-Target") == "main-content":
+    if is_partial_request(request):
         return templates.TemplateResponse(request=request, name="partials/skills.html", context=context)
     return templates.TemplateResponse(request=request, name="index.html", context=context)
 
@@ -133,7 +140,7 @@ async def page_contact(request: Request):
         "profile": PROFILE,
         "active_tab": "contact",
     }
-    if is_htmx(request) and request.headers.get("HX-Target") == "main-content":
+    if is_partial_request(request):
         return templates.TemplateResponse(request=request, name="partials/contact.html", context=context)
     return templates.TemplateResponse(request=request, name="index.html", context=context)
 
